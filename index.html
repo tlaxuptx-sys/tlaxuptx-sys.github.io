@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingeniería en Tecnologías de la Información e Innovación Digital - UPTlax</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- AOS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js">
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['"Playfair Display"', 'serif'],
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+                    },
+                    colors: {
+                        wine: {
+                            DEFAULT: '#6a1b29',
+                            light: '#802334',
+                            dark: '#4a1119',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="text-gray-800 font-sans">
+
+    <!-- ============================================ -->
+    <!-- NAVEGACIÓN                                   -->
+    <!-- ============================================ -->
+    <nav id="site-nav" class="site-nav text-white fixed top-0 inset-x-0 z-50 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="flex items-center justify-between min-h-16">
+                <a href="#" class="flex items-center gap-2 font-extrabold text-sm">
+                    <img src="files/itiid.jpg" alt="UPTx" class="w-9 h-9 rounded-md object-cover ring-1 ring-white/20">
+                    <span>ITIID UPTx</span>
+                </a>
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="#aspirantes" class="nav-link"><i class="fa-solid fa-user-graduate"></i> Contexto</a>
+                    <a href="#academica" class="nav-link"><i class="fa-solid fa-graduation-cap"></i> Oferta académica</a>
+                    <a href="#estructura" class="nav-link"><i class="fa-solid fa-sitemap"></i> Estructura organizacional</a>
+                    <a href="#profesores" class="nav-link"><i class="fa-solid fa-chalkboard-user"></i> Profesores</a>
+                    <a href="#comunidad" class="nav-link"><i class="fa-solid fa-users"></i> Comunidad</a>
+                    
+                    <!-- NUEVO MENÚ DESPLEGABLE "NOSOTROS" -->
+                    <div class="relative group">
+                        <button onclick="toggleNosotrosDropdown()" class="nav-link focus:outline-none flex items-center gap-1">
+                            <i class="fa-solid fa-building-columns"></i> Nosotros <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" id="nosotros-arrow"></i>
+                        </button>
+                        <div id="nosotros-dropdown" class="absolute top-full right-0 mt-2 w-72 bg-[#1c0a0d] rounded-xl shadow-2xl border border-white/10 overflow-hidden transition-all duration-300 origin-top-right scale-95 opacity-0 pointer-events-none">
+                            <div class="py-2 flex flex-col text-sm">
+                                <a href="#nosotros-bienvenida" onclick="closeNosotrosDropdown()" class="px-4 py-2 hover:bg-white/10 flex items-center gap-3 transition-colors"><i class="fa-solid fa-hand-peace text-amber-400 w-5"></i> Mensaje de Bienvenida</a>
+                                <a href="#nosotros-mision" onclick="closeNosotrosDropdown()" class="px-4 py-2 hover:bg-white/10 flex items-center gap-3 transition-colors"><i class="fa-solid fa-bullseye text-amber-400 w-5"></i> Misión UPTx</a>
+                                <a href="#nosotros-vision" onclick="closeNosotrosDropdown()" class="px-4 py-2 hover:bg-white/10 flex items-center gap-3 transition-colors"><i class="fa-solid fa-eye text-amber-400 w-5"></i> Visión UPTx</a>
+                                <a href="#nosotros-politica" onclick="closeNosotrosDropdown()" class="px-4 py-2 hover:bg-white/10 flex items-center gap-3 transition-colors"><i class="fa-solid fa-file-lines text-amber-400 w-5"></i> Política de Calidad</a>
+                                <a href="#nosotros-objetivos" onclick="closeNosotrosDropdown()" class="px-4 py-2 hover:bg-white/10 flex items-center gap-3 transition-colors"><i class="fa-solid fa-list-check text-amber-400 w-5"></i> Objetivos de Calidad</a>
+                                <a href="#nosotros-objetivo-pe" onclick="closeNosotrosDropdown()" class="px-4 py-2 hover:bg-white/10 flex items-center gap-3 transition-colors"><i class="fa-solid fa-graduation-cap text-amber-400 w-5"></i> Objetivo General del PE</a>
+                                <a href="#nosotros-plan-desarrollo" onclick="closeNosotrosDropdown()" class="px-4 py-2 hover:bg-white/10 flex items-center gap-3 transition-colors"><i class="fa-solid fa-chart-line text-amber-400 w-5"></i> Plan de Desarrollo 2024-2028</a>
+                                <a href="#nosotros-planes-trabajo" onclick="closeNosotrosDropdown()" class="px-4 py-2 hover:bg-white/10 flex items-center gap-3 transition-colors"><i class="fa-solid fa-calendar-check text-amber-400 w-5"></i> Planes de Trabajo 2024-2028</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="toggleMenu()" aria-label="Abrir menú" aria-expanded="false" id="menu-toggle"
+                class="lg:hidden w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <div id="mobile-menu" class="mobile-menu lg:hidden">
+            <div class="grid gap-2 pb-4 pt-1">
+                <a href="#aspirantes" onclick="closeMenu()" class="nav-link"><i class="fa-solid fa-user-graduate"></i> Contexto y aspirantes</a>
+                <a href="#academica" onclick="closeMenu()" class="nav-link"><i class="fa-solid fa-graduation-cap"></i> Oferta académica</a>
+                <a href="#estructura" onclick="closeMenu()" class="nav-link"><i class="fa-solid fa-sitemap"></i> Estructura organizacional</a>
+                <a href="#profesores" onclick="closeMenu()" class="nav-link"><i class="fa-solid fa-chalkboard-user"></i> Profesores</a>
+                <a href="#comunidad" onclick="closeMenu()" class="nav-link"><i class="fa-solid fa-users"></i> Comunidad y entorno</a>
+                
+                <!-- Móvil: Submenú Nosotros -->
+                <div class="border-t border-white/10 pt-2 mt-2">
+                    <span class="nav-link text-white/50 text-xs uppercase tracking-wider px-3">Nosotros</span>
+                    <a href="#nosotros-bienvenida" onclick="closeMenu()" class="nav-link pl-6"><i class="fa-solid fa-hand-peace w-5 text-amber-400"></i> Mensaje de Bienvenida</a>
+                    <a href="#nosotros-mision" onclick="closeMenu()" class="nav-link pl-6"><i class="fa-solid fa-bullseye w-5 text-amber-400"></i> Misión UPTx</a>
+                    <a href="#nosotros-vision" onclick="closeMenu()" class="nav-link pl-6"><i class="fa-solid fa-eye w-5 text-amber-400"></i> Visión UPTx</a>
+                    <a href="#nosotros-politica" onclick="closeMenu()" class="nav-link pl-6"><i class="fa-solid fa-file-lines w-5 text-amber-400"></i> Política de Calidad</a>
+                    <a href="#nosotros-objetivos" onclick="closeMenu()" class="nav-link pl-6"><i class="fa-solid fa-list-check w-5 text-amber-400"></i> Objetivos de Calidad</a>
+                    <a href="#nosotros-objetivo-pe" onclick="closeMenu()" class="nav-link pl-6"><i class="fa-solid fa-graduation-cap w-5 text-amber-400"></i> Objetivo General del PE</a>
+                    <a href="#nosotros-plan-desarrollo" onclick="closeMenu()" class="nav-link pl-6"><i class="fa-solid fa-chart-line w-5 text-amber-400"></i> Plan de Desarrollo 2024-2028</a>
+                    <a href="#nosotros-planes-trabajo" onclick="closeMenu()" class="nav-link pl-6"><i class="fa-solid fa-calendar-check w-5 text-amber-400"></i> Planes de Trabajo 2024-2028</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- ============================================ -->
+<!-- HEADER / HERO                                -->
+<!-- ============================================ -->
+<header class="relative min-h-[520px] overflow-hidden text-white">
+    <img src="files/IMG_1646 2.JPG" alt="Ingeniería en Tecnologías de la Información e Innovación Digital"
+    class="hero-bg absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#1c0a0d]/95 via-[#6a1b29]/82 to-[#111827]/72"></div>
+    <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#fffaf5] to-transparent"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-12">
+        <div class="max-w-3xl pt-28 md:pt-32 pb-16 space-y-6">
+            <h1 class="hero-reveal hero-delay-2 font-display text-4xl sm:text-5xl md:text-7xl font-extrabold leading-[1.02]">
+                Ingeniería en Tecnologías de la Información
+                <span class="block text-amber-300 italic">e Innovación Digital</span>
+            </h1>
+            <p class="hero-reveal hero-delay-3 max-w-2xl text-sm md:text-lg leading-relaxed text-white/82">
+                Formación práctica en software, datos, redes, inteligencia artificial y transformación digital para
+                responder a los retos de la industria actual.
+            </p>
+            <div class="hero-reveal hero-delay-4 flex flex-col sm:flex-row gap-3">
+                <a href="#academica"
+                class="float-soft inline-flex items-center justify-center gap-2 rounded-full bg-amber-400 px-5 py-3 text-sm font-extrabold text-[#4a1119] shadow-lg shadow-black/20 hover:bg-amber-300 transition-colors">
+                <i class="fa-solid fa-graduation-cap"></i> Ver oferta académica
+            </a>
+        </div>
+    </div>
+</div>
+</header>
+
+<!-- ============================================ -->
+<!-- MAIN                                         -->
+<!-- ============================================ -->
+<main class="max-w-7xl mx-auto px-4 py-12 space-y-24">
+
+    <!-- ========================================== -->
+    <!-- SECCIÓN: ASPIRANTES                       -->
+    <!-- ========================================== -->
+    <section id="aspirantes" class="scroll-mt-20 space-y-12">
+        <div data-aos="fade-up"
+        class="bg-gradient-to-br from-[#6a1b29] via-[#7a2130] to-[#802334] rounded-3xl text-white min-h-[520px] p-8 md:p-12 shadow-xl relative overflow-hidden">
+        <img src="files/IMG_1670 2.JPG" alt="Comunidad de Ingeniería en Tecnologías de la Información"
+        class="program-hero-photo absolute inset-y-0 left-0 h-full w-full lg:w-[64%] object-cover object-center opacity-70">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#4a1119]/10 via-[#6a1b29]/48 to-[#802334]"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#4a1119]/58 via-transparent to-[#4a1119]/10"></div>
+        <div class="relative z-10 flex min-h-[440px] items-center justify-end">
+            <div class="max-w-2xl space-y-4 lg:ml-auto">
+                <h2 class="font-display text-3xl md:text-4xl font-bold">Descripción del Programa Educativo</h2>
+                <p class="text-gray-200 text-sm md:text-base leading-relaxed">
+                    Les damos la más cordial bienvenida al sitio web del Programa Educativo de
+                    Ingeniería en Tecnologías de la Información e Innovación Digital (ITIID) de la
+                    Universidad Politécnica de Tlaxcala (UPTx), un espacio diseñado para
+                    acercarte a una comunidad académica comprometida con la formación de
+                    profesionistas capaces de liderar la transformación digital de las organizaciones y
+                    contribuir al desarrollo tecnológico de México.
+                    Nuestro programa inició actividades el 1 de septiembre de 2010, como resultado
+                    de un estudio de viabilidad que identificó la creciente demanda de especialistas en
+                    Tecnologías de la Información por parte de los sectores industrial, empresarial,
+                    gubernamental y de servicios de Tlaxcala y de la región centro del país. Desde
+                    entonces, hemos mantenido una evolución permanente sustentada en el Análisis
+                    de la Situación del Trabajo, metodología que permite identificar las competencias
+                    profesionales requeridas por el mercado laboral y mantener una oferta educativa
+                    pertinente, actualizada y alineada con las tendencias tecnológicas globales.
+                </p>
+                <!-- TEXTO DE INVITACIÓN Y BIENVENIDA AGREGADO DENTRO DEL RECUADRO -->
+                <div class="pt-2 space-y-3">
+                    <p class="text-amber-300 font-display text-xl md:text-2xl mt-6">
+                        Bienvenido a la Universidad Politécnica de Tlaxcala. Bienvenido a la Ingeniería en Tecnologías de la Información e Innovación Digital. Aquí comienza tu futuro, donde la tecnología inspira, la innovación transforma y el talento construye el mañana.
+                    </p>
+                </div>
+                <div class="pt-2 flex flex-wrap gap-4 text-xs md:text-sm font-semibold">
+                    <span class="bg-amber-500 text-[#6a1b29] px-4 py-1.5 rounded-full shadow"><i
+                        class="fa-solid fa-calendar mr-2"></i>Convocatoria Abierta • Inicio: Septiembre
+                    2026</span>
+                </div>
+            </div>
+        </div>
+        <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-amber-500/10 rounded-full blur-2xl"></div>
+        <div class="absolute -left-10 -top-10 w-56 h-56 bg-white/5 rounded-full blur-2xl"></div>
+    </div>
+
+    <!-- Misión, Visión y Área de Influencia -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div data-aos="fade-up" data-aos-delay="0"
+        class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-3 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+        <div
+        class="w-10 h-10 bg-rose-50 rounded-xl flex items-center justify-center text-[#6a1b29] text-lg font-bold">
+        <i class="fa-solid fa-bullseye"></i>
+    </div>
+    <h3 class="text-base font-bold text-gray-900">Misión PE TIID</h3>
+    <p class="text-xs text-gray-600 leading-relaxed">Formar profesionistas integrales en Tecnologías
+        de la Información e Innovación Digital, mediante un modelo educativo de excelencia basado en
+        competencias, la investigación aplicada, la innovación tecnológica y la vinculación con los
+        sectores social y productivo, en un entorno inclusivo, equitativo e intercultural, para
+        desarrollar soluciones digitales que contribuyan al bienestar social, la transformación
+        tecnológica y el desarrollo sustentable de su entorno.</p>
+    <p class="text-[10px] text-gray-400 font-semibold uppercase tracking-wide">Vigente a partir de
+        julio 2026</p>
+</div>
+<div data-aos="fade-up" data-aos-delay="100"
+class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-3 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+<div
+class="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center text-amber-600 text-lg font-bold">
+<i class="fa-solid fa-eye"></i>
+</div>
+<h3 class="text-base font-bold text-gray-900">Visión PE TIID 2035</h3>
+<p class="text-xs text-gray-600 leading-relaxed">Ser un Programa Educativo reconocido nacional
+    e internacionalmente por la excelencia académica, la pertinencia de su formación profesional,
+    la innovación tecnológica y social, y su compromiso con la inclusión, la equidad de género y
+    la interculturalidad, formando líderes capaces de impulsar la transformación digital y el
+    desarrollo sustentable de la sociedad.</p>
+<p class="text-[10px] text-gray-400 font-semibold uppercase tracking-wide">Vigente a partir de
+    julio 2026</p>
+</div>
+<div data-aos="fade-up" data-aos-delay="200"
+class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-3 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+<div
+class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 text-lg font-bold">
+<i class="fa-solid fa-map-location-dot"></i>
+</div>
+<h3 class="text-base font-bold text-gray-900">Área de Influencia</h3>
+<p class="text-xs text-gray-600 leading-relaxed">Despliegue operativo y de desarrollo tecnológico
+    con impacto prioritario en los parques industriales del corredor Tlaxcala, Puebla e Hidalgo, así
+    como proyección de software internacional.</p>
+</div>
+</div>
+</section>
+
+<!-- ========================================== -->
+<!-- SECCIÓN: MAPAS CURRICULARES               -->
+<!-- ========================================== -->
+<section id="academica" class="scroll-mt-20 space-y-12">
+    <div class="text-center max-w-2xl mx-auto space-y-2" data-aos="fade-up">
+        <h2 class="text-2xl font-bold text-gray-950 uppercase tracking-tight">Mapas Curriculares</h2>
+        <div class="w-16 h-1 bg-amber-500 mx-auto rounded"></div>
+        <p class="text-sm text-gray-500">Plan de estudios vigente y trayectorias de especialización</p>
+    </div>
+
+    <!-- PESTAÑAS PRINCIPALES: Plan 2018 vs Plan 2024 -->
+    <div class="flex flex-col sm:flex-row justify-center border-b border-gray-200 max-w-3xl mx-auto gap-2 sm:gap-0" data-aos="fade-up">
+        <button onclick="switchPlan('plan2018')" id="btn-plan2018"
+            class="flex-1 py-3 text-sm font-bold uppercase tracking-wider text-[#6a1b29] border-b-2 border-[#6a1b29] transition-all focus:outline-none">
+            <i class="fa-solid fa-calendar mr-2"></i> I. Plan 2018
+        </button>
+        <button onclick="switchPlan('plan2024')" id="btn-plan2024"
+            class="flex-1 py-3 text-sm font-bold uppercase tracking-wider text-gray-400 border-b-2 border-transparent hover:text-gray-600 transition-all focus:outline-none">
+            <i class="fa-solid fa-calendar-check mr-2"></i> II. Plan 2024
+        </button>
+    </div>
+
+    <!-- CONTENIDO PLAN 2018 -->
+    <div id="plan2018" class="plan-content space-y-6">
+        <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm max-w-5xl mx-auto" data-aos="fade-up">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-gray-50 p-3 rounded-xl border border-gray-100 gap-2">
+                <span class="text-xs font-semibold text-gray-600">
+                    <i class="fa-solid fa-circle-info mr-1 text-amber-500"></i>
+                    Plan de estudios 2018 - Ingeniería en Tecnologías de la Información
+                </span>
+                <a href="files2/MapaCurricular-CACEI-TI_Plan2018.pdf" target="_blank" class="text-xs bg-[#6a1b29] text-white px-3 py-1.5 rounded-lg hover:bg-[#802334] font-medium flex items-center gap-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Ver Pantalla Completa
+                </a>
+            </div>
+            <div class="overflow-hidden rounded-xl border border-gray-100 bg-gray-50 flex justify-center p-2">
+                <embed src="files2/MapaCurricular-CACEI-TI_Plan2018.pdf"
+                       type="application/pdf"
+                       class="pdf-viewer"
+                       onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'text-center py-12 text-gray-400\'><i class=\'fa-solid fa-file-pdf text-4xl mb-3 block text-red-500\'></i><p class=\'text-sm\'>PDF no disponible</p><p class=\'text-xs\'>Sube el archivo como <code>files/MapaCurricular-CACEI-TI_Plan2018.pdf</code></p></div>';">
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENIDO PLAN 2024 -->
+    <div id="plan2024" class="plan-content space-y-6" style="display:none;">
+
+        <!-- Subtabs: 4 especialidades -->
+        <div class="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto" data-aos="fade-up">
+            <button onclick="switchSpecialty('redes')" id="sbtn-redes"
+                class="px-4 py-2 text-xs font-bold uppercase rounded-full bg-[#6a1b29] text-white transition-all focus:outline-none shadow-sm hover:bg-[#802334]">
+                <i class="fa-solid fa-network-wired mr-1"></i> a) Infraestructura de Redes Digitales
+            </button>
+            <button onclick="switchSpecialty('ia')" id="sbtn-ia"
+                class="px-4 py-2 text-xs font-bold uppercase rounded-full bg-gray-200 text-gray-600 hover:bg-gray-300 transition-all focus:outline-none">
+                <i class="fa-solid fa-brain mr-1"></i> b) Inteligencia Artificial
+            </button>
+            <button onclick="switchSpecialty('datos')" id="sbtn-datos"
+                class="px-4 py-2 text-xs font-bold uppercase rounded-full bg-gray-200 text-gray-600 hover:bg-gray-300 transition-all focus:outline-none">
+                <i class="fa-solid fa-chart-pie mr-1"></i> c) Ciencia de Datos
+            </button>
+            <button onclick="switchSpecialty('multi')" id="sbtn-multi"
+                class="px-4 py-2 text-xs font-bold uppercase rounded-full bg-gray-200 text-gray-600 hover:bg-gray-300 transition-all focus:outline-none">
+                <i class="fa-solid fa-mobile-screen-button mr-1"></i> d) Desarrollo de Software Multiplataforma
+            </button>
+        </div>
+
+        <!-- Tarjetas de cada especialidad -->
+        <div id="specialty-redes" class="specialty-content space-y-4">
+            <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm max-w-5xl mx-auto" data-aos="fade-up">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-gray-50 p-3 rounded-xl border border-gray-100 gap-2">
+                    <span class="text-xs font-semibold text-gray-600">
+                        <i class="fa-solid fa-circle-info mr-1 text-[#6a1b29]"></i>
+                        a) Infraestructura de Redes Digitales • Enrutamiento, Ciberseguridad y Cloud
+                    </span>
+                    <a href="files2/MapaCurricular_CACEI_UPTx-TIID-IRD_Plan2024.pdf" target="_blank" class="text-xs bg-[#6a1b29] text-white px-3 py-1.5 rounded-lg hover:bg-[#802334] font-medium flex items-center gap-1.5 whitespace-nowrap">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Ver Completa
+                    </a>
+                </div>
+                <div class="overflow-hidden rounded-xl border border-gray-100 bg-gray-50 flex justify-center p-2">
+                    <embed src="files2/MapaCurricular_CACEI_UPTx-TIID-IRD_Plan2024.pdf"
+                           type="application/pdf"
+                           class="pdf-viewer"
+                           onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'text-center py-12 text-gray-400\'><i class=\'fa-solid fa-file-pdf text-4xl mb-3 block text-red-500\'></i><p class=\'text-sm\'>PDF no disponible</p><p class=\'text-xs\'>Sube el archivo como <code>files/MapaCurricular_CACEI_UPTx-TIID-IRD_Plan2024.pdf</code></p></div>';">
+                </div>
+            </div>
+        </div>
+
+        <div id="specialty-ia" class="specialty-content space-y-4" style="display:none;">
+            <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm max-w-5xl mx-auto" data-aos="fade-up">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-gray-50 p-3 rounded-xl border border-gray-100 gap-2">
+                    <span class="text-xs font-semibold text-gray-600">
+                        <i class="fa-solid fa-circle-info mr-1 text-amber-500"></i>
+                        b) Inteligencia Artificial • Machine Learning, Visión Artificial y Deep Learning
+                    </span>
+                    <a href="files2/MapaCurricular_CACEI_UPTx-TIID-IA_Plan2024.pdf" target="_blank" class="text-xs bg-[#6a1b29] text-white px-3 py-1.5 rounded-lg hover:bg-[#802334] font-medium flex items-center gap-1.5 whitespace-nowrap">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Ver Completa
+                    </a>
+                </div>
+                <div class="overflow-hidden rounded-xl border border-gray-100 bg-gray-50 flex justify-center p-2">
+                    <embed src="files2/MapaCurricular_CACEI_UPTx-TIID-IA_Plan2024.pdf"
+                           type="application/pdf"
+                           class="pdf-viewer"
+                           onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'text-center py-12 text-gray-400\'><i class=\'fa-solid fa-file-pdf text-4xl mb-3 block text-red-500\'></i><p class=\'text-sm\'>PDF no disponible</p><p class=\'text-xs\'>Sube el archivo como <code>files/MapaCurricular_CACEI_UPTx-TIID-IA_Plan2024.pdf</code></p></div>';">
+                </div>
+            </div>
+        </div>
+
+        <div id="specialty-datos" class="specialty-content space-y-4" style="display:none;">
+            <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm max-w-5xl mx-auto" data-aos="fade-up">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-gray-50 p-3 rounded-xl border border-gray-100 gap-2">
+                    <span class="text-xs font-semibold text-gray-600">
+                        <i class="fa-solid fa-circle-info mr-1 text-amber-500"></i>
+                        c) Ciencia de Datos • Big Data, Minería de Datos y Estadística Computacional
+                    </span>
+                    <a href="files2/MapaCurricular_CACEI_UPTx-TIID-CD_Plan2024.pdf" target="_blank" class="text-xs bg-[#6a1b29] text-white px-3 py-1.5 rounded-lg hover:bg-[#802334] font-medium flex items-center gap-1.5 whitespace-nowrap">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Ver Completa
+                    </a>
+                </div>
+                <div class="overflow-hidden rounded-xl border border-gray-100 bg-gray-50 flex justify-center p-2">
+                    <embed src="files2/MapaCurricular_CACEI_UPTx-TIID-CD_Plan2024.pdf"
+                           type="application/pdf"
+                           class="pdf-viewer"
+                           onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'text-center py-12 text-gray-400\'><i class=\'fa-solid fa-file-pdf text-4xl mb-3 block text-red-500\'></i><p class=\'text-sm\'>PDF no disponible</p><p class=\'text-xs\'>Sube el archivo como <code>files/MapaCurricular_CACEI_UPTx-TIID-CD_Plan2024.pdf</code></p></div>';">
+                </div>
+            </div>
+        </div>
+
+        <div id="specialty-multi" class="specialty-content space-y-4" style="display:none;">
+            <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm max-w-5xl mx-auto" data-aos="fade-up">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-gray-50 p-3 rounded-xl border border-gray-100 gap-2">
+                    <span class="text-xs font-semibold text-gray-600">
+                        <i class="fa-solid fa-circle-info mr-1 text-[#6a1b29]"></i>
+                        d) Desarrollo de Software Multiplataforma • Móvil, Web y Escritorio
+                    </span>
+                    <a href="files2/MapaCurricular_CACEI_UPTx-TIID-DSM_Plan2024.pdf" target="_blank" class="text-xs bg-[#6a1b29] text-white px-3 py-1.5 rounded-lg hover:bg-[#802334] font-medium flex items-center gap-1.5 whitespace-nowrap">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Ver Completa
+                    </a>
+                </div>
+                <div class="overflow-hidden rounded-xl border border-gray-100 bg-gray-50 flex justify-center p-2">
+                    <embed src="files2/MapaCurricular_CACEI_UPTx-TIID-DSM_Plan2024.pdf"
+                           type="application/pdf"
+                           class="pdf-viewer"
+                           onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'text-center py-12 text-gray-400\'><i class=\'fa-solid fa-file-pdf text-4xl mb-3 block text-red-500\'></i><p class=\'text-sm\'>PDF no disponible</p><p class=\'text-xs\'>Sube el archivo como <code>files/MapaCurricular_CACEI_UPTx-TIID-DSM_Plan2024.pdf</code></p></div>';">
+                </div>
+            </div>
+        </div>
+
+        <!-- Leyenda de especialidades -->
+        <div class="flex flex-wrap justify-center gap-4 text-xs text-gray-500 bg-white p-4 rounded-xl border border-gray-100 max-w-3xl mx-auto" data-aos="fade-up">
+            <span class="flex items-center gap-1"><span class="w-3 h-3 bg-[#6a1b29] rounded-full"></span> a) Infraestructura de Redes Digitales</span>
+            <span class="flex items-center gap-1"><span class="w-3 h-3 bg-amber-500 rounded-full"></span> b) Inteligencia Artificial</span>
+            <span class="flex items-center gap-1"><span class="w-3 h-3 bg-blue-500 rounded-full"></span> c) Ciencia de Datos</span>
+            <span class="flex items-center gap-1"><span class="w-3 h-3 bg-green-500 rounded-full"></span> d) Desarrollo de Software Multiplataforma</span>
+        </div>
+    </div>
+</section>
+
+<!-- ========================================== -->
+<!-- SECCIÓN: ESTRUCTURA ORGANIZACIONAL        -->
+<!-- ========================================== -->
+<section id="estructura" class="scroll-mt-20 space-y-12">
+    <div class="text-center max-w-3xl mx-auto space-y-3" data-aos="fade-up">
+        <span class="inline-flex items-center gap-2 rounded-full bg-[#6a1b29]/10 px-4 py-2 text-xs font-extrabold uppercase text-[#6a1b29]">
+            <i class="fa-solid fa-sitemap"></i> Estructura organizacional
+        </span>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-950">Organigrama del Programa Educativo</h2>
+        <p class="text-sm text-gray-600">Conoce la organización académica que da vida al programa, desde la dirección hasta los laboratorios especializados.</p>
+    </div>
+
+    <!-- DOS ORGANIGRAMAS LADO A LADO -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" data-aos="fade-up" data-aos-delay="50">
+
+        <!-- ORGANIGRAMA 1: Imagen existente -->
+        <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+            <div class="bg-[#6a1b29] px-6 py-3 flex items-center gap-3">
+                <i class="fa-solid fa-diagram-project text-amber-300 text-lg"></i>
+                <h3 class="text-white font-bold text-sm">Organigrama General</h3>
+                <span class="ml-auto text-white/50 text-[10px]">Estructura vigente 2026</span>
+            </div>
+            <div class="p-4 flex justify-center bg-gray-50/50">
+                <img src="files/organigrama.png" alt="Organigrama del Programa Educativo"
+                class="w-full h-auto rounded-lg shadow-sm border border-gray-200"
+                onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div class=\'text-center py-12 text-gray-400\'><i class=\'fa-solid fa-image text-4xl mb-3 block\'></i><p class=\'text-sm\'>Organigrama no disponible</p><p class=\'text-xs\'>Sube la imagen como <code>files/organigrama.png</code></p></div>';">
+            </div>
+        </div>
+
+        <!-- ORGANIGRAMA 2: Espacio para tu segunda imagen -->
+        <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+            <div class="bg-amber-700 px-6 py-3 flex items-center gap-3">
+                <i class="fa-solid fa-sitemap text-amber-200 text-lg"></i>
+                <h3 class="text-white font-bold text-sm">Organigrama Estructura</h3>
+                <span class="ml-auto text-white/50 text-[10px]">Áreas y Coordinaciones</span>
+            </div>
+            <div class="p-4 flex justify-center bg-gray-50/50">
+                <img src="files/organigrama2.png" alt="Organigrama Estructura"
+                class="w-full h-auto rounded-lg shadow-sm border border-gray-200"
+                onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div class=\'text-center py-12 text-gray-400\'><i class=\'fa-solid fa-image text-4xl mb-3 block\'></i><p class=\'text-sm\'>Organigrama no disponible</p><p class=\'text-xs\'>Sube la imagen como <code>files/organigrama2.png</code></p></div>';">
+            </div>
+        </div>
+    </div>
+
+    <!-- 1. DIRECCIÓN DEL PROGRAMA EDUCATIVO -->
+    <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm" data-aos="fade-up" data-aos-delay="100">
+        <div class="bg-[#6a1b29] px-6 py-4 flex items-center gap-3">
+            <i class="fa-solid fa-user-tie text-amber-300 text-xl"></i>
+            <h3 class="text-white font-bold text-lg">Dirección del Programa Educativo</h3>
+            <span class="ml-auto text-white/60 text-xs">Nombrado por el Rector</span>
+        </div>
+        <div class="p-6">
+            <p class="text-sm text-gray-600 mb-4">El Director del Programa Educativo es el área y titular dependiente de la Secretaría Académica, encargado de promover y vigilar el desarrollo del Programa Educativo, de acuerdo al Artículo 33 del Reglamento Interior de la Universidad.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div class="bg-gray-50 p-3 rounded-lg">
+                    <p class="text-[10px] text-gray-500 font-bold uppercase">Funciones Estratégicas</p>
+                    <ul class="mt-1 space-y-1">
+                        <li class="funcion-item"><i class="fa-solid fa-circle-check"></i> Promover y vigilar el desarrollo del Programa Educativo</li>
+                        <li class="funcion-item"><i class="fa-solid fa-circle-check"></i> Mantener actualizado el Programa Educativo</li>
+                        <li class="funcion-item"><i class="fa-solid fa-circle-check"></i> Diseñar, implementar y evaluar planes de estudio</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-3 rounded-lg">
+                    <p class="text-[10px] text-gray-500 font-bold uppercase">Gestión Académica</p>
+                    <ul class="mt-1 space-y-1">
+                        <li class="funcion-item"><i class="fa-solid fa-circle-check"></i> Coordinar sistemas de evaluación</li>
+                        <li class="funcion-item"><i class="fa-solid fa-circle-check"></i> Asignar cargas académicas</li>
+                        <li class="funcion-item"><i class="fa-solid fa-circle-check"></i> Establecer mecanismos de seguimiento</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-3 rounded-lg">
+                    <p class="text-[10px] text-gray-500 font-bold uppercase">Vinculación y Normatividad</p>
+                    <ul class="mt-1 space-y-1">
+                        <li class="funcion-item"><i class="fa-solid fa-circle-check"></i> Promover capacitación docente</li>
+                        <li class="funcion-item"><i class="fa-solid fa-circle-check"></i> Participar en órganos colegiados</li>
+                        <li class="funcion-item"><i class="fa-solid fa-circle-check"></i> Proponer normatividad del Programa Educativo</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-3 text-xs text-gray-400">20 funciones establecidas en el Artículo 33 del Reglamento Interior</div>
+        </div>
+    </div>
+
+    <!-- 2. ASISTENTE DEL PROGRAMA EDUCATIVO -->
+    <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm" data-aos="fade-up" data-aos-delay="150">
+        <div class="bg-gray-800 px-6 py-4 flex items-center gap-3">
+            <i class="fa-solid fa-user-gear text-amber-300 text-xl"></i>
+            <h3 class="text-white font-bold text-lg">Asistente del Programa Educativo</h3>
+            <span class="ml-auto text-white/60 text-xs">Asignado por Secretaría Administrativa</span>
+        </div>
+        <div class="p-6">
+            <p class="text-sm text-gray-600 mb-4">Brinda apoyo administrativo, técnico y operativo a la Dirección del Programa Educativo, garantizando la organización y seguimiento de los procesos académicos, administrativos, de calidad, vinculación, acreditación y mejora continua.</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div class="border border-gray-100 p-3 rounded-lg">
+                    <p class="text-[10px] font-bold text-[#6a1b29] uppercase">Administrativa</p>
+                    <ul class="mt-1 space-y-0.5 text-xs text-gray-600">
+                        <li>• Agenda y oficios</li>
+                        <li>• Minutas y actas</li>
+                        <li>• Correspondencia</li>
+                    </ul>
+                </div>
+                <div class="border border-gray-100 p-3 rounded-lg">
+                    <p class="text-[10px] font-bold text-[#6a1b29] uppercase">Académica</p>
+                    <ul class="mt-1 space-y-0.5 text-xs text-gray-600">
+                        <li>• Horarios y aulas</li>
+                        <li>• Cargas académicas</li>
+                        <li>• Tutorías y estadías</li>
+                    </ul>
+                </div>
+                <div class="border border-gray-100 p-3 rounded-lg">
+                    <p class="text-[10px] font-bold text-[#6a1b29] uppercase">Calidad</p>
+                    <ul class="mt-1 space-y-0.5 text-xs text-gray-600">
+                        <li>• ISO 9001:2015</li>
+                        <li>• Auditorías</li>
+                        <li>• Indicadores</li>
+                    </ul>
+                </div>
+                <div class="border border-gray-100 p-3 rounded-lg">
+                    <p class="text-[10px] font-bold text-[#6a1b29] uppercase">Acreditación</p>
+                    <ul class="mt-1 space-y-0.5 text-xs text-gray-600">
+                        <li>• CIEES</li>
+                        <li>• Evidencias GAPES</li>
+                        <li>• Autoevaluaciones</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-3 flex flex-wrap gap-2">
+                <span class="text-[10px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full">Control Escolar</span>
+                <span class="text-[10px] bg-green-50 text-green-700 px-2 py-0.5 rounded-full">Vinculación</span>
+                <span class="text-[10px] bg-purple-50 text-purple-700 px-2 py-0.5 rounded-full">Comunicación</span>
+                <span class="text-[10px] bg-rose-50 text-rose-700 px-2 py-0.5 rounded-full">Innovación Digital</span>
+                <span class="text-[10px] bg-amber-50 text-amber-700 px-2 py-0.5 rounded-full">Planeación (POA, PAT)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. ACADEMIA DEL PROGRAMA EDUCATIVO -->
+    <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm" data-aos="fade-up" data-aos-delay="200">
+        <div class="bg-amber-800 px-6 py-4 flex items-center gap-3">
+            <i class="fa-solid fa-people-group text-amber-200 text-xl"></i>
+            <h3 class="text-white font-bold text-lg">Academia del Programa Educativo</h3>
+            <span class="ml-auto text-white/60 text-xs">Órgano colegiado máximo</span>
+        </div>
+        <div class="p-6">
+            <p class="text-sm text-gray-600 mb-4">Órgano colegiado libre, plural y democrático, con carácter deliberativo y propositivo, encargado de planear, analizar, estructurar, evaluar y corregir el proceso educativo. Regulado por el Reglamento de Operación e Instalación del Sistema de Academias (2012).</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="text-xs font-bold text-gray-700 uppercase tracking-wider">Integrantes</h4>
+                    <ul class="mt-2 space-y-1 text-xs text-gray-600">
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 bg-amber-500 rounded-full"></span> Profesores e investigadores de tiempo completo</li>
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 bg-amber-500 rounded-full"></span> Rector y Secretario Académico (voz y voto)</li>
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 bg-amber-500 rounded-full"></span> Profesores por asignatura (voz y voto)</li>
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 bg-amber-500 rounded-full"></span> Director del Programa Educativo (voz y voto)</li>
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 bg-gray-400 rounded-full"></span> Profesores invitados (voz, sin voto)</li>
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 bg-gray-400 rounded-full"></span> Alumnos con promedio > 8.5 (voz, sin voto)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-gray-700 uppercase tracking-wider">Funciones Colegiadas</h4>
+                    <ul class="mt-2 space-y-1 text-xs text-gray-600">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-600 mt-0.5 text-[10px]"></i> Planeación, ejecución y evaluación de planes de estudio</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-600 mt-0.5 text-[10px]"></i> Optimizar el proceso de enseñanza-aprendizaje</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-600 mt-0.5 text-[10px]"></i> Diseñar apoyos didácticos y fomentar el intercambio</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-600 mt-0.5 text-[10px]"></i> Programas contra deserción, reprobación y eficiencia terminal</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-600 mt-0.5 text-[10px]"></i> Capacitación, actualización y superación profesional</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-600 mt-0.5 text-[10px]"></i> Promover investigación pedagógica, científica y tecnológica</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-gray-100 text-xs text-gray-400">
+                <strong>Presidente</strong> y <strong>Secretario</strong> elegidos por el colegiado • Documentación: registro, agenda, relatoría y acuerdos
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. SUBACADEMIAS (7 Áreas del Conocimiento) -->
+    <div class="space-y-4" data-aos="fade-up" data-aos-delay="250">
+        <h3 class="text-xl font-bold text-gray-950 flex items-center gap-2">
+            <i class="fa-solid fa-layer-group text-amber-500"></i> SubAcademias
+            <span class="text-xs font-normal text-gray-400">— 7 Áreas del Conocimiento</span>
+        </h3>
+        <p class="text-xs text-gray-500">Coordinadores nombrados por el Director del Programa Educativo y visto bueno del Colegiado. Basadas en el Acuerdo de Washington y la Alianza Internacional de Ingenierías.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="subacademia-item bg-white p-4 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
+                <h4 class="text-sm font-bold text-[#6a1b29]">1. Ciencias Básicas</h4>
+                <p class="text-xs text-gray-600">Matemáticas, física, química y biología. Herramientas matemáticas, lógico-espaciales y razonamiento científico.</p>
+            </div>
+            <div class="subacademia-item bg-white p-4 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
+                <h4 class="text-sm font-bold text-[#6a1b29]">2. Ciencias de la Ingeniería</h4>
+                <p class="text-xs text-gray-600">Herramientas, técnicas y metodologías para solución de problemas de ingeniería básica. Conexión entre ciencias básicas y aplicación.</p>
+            </div>
+            <div class="subacademia-item bg-white p-4 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
+                <h4 class="text-sm font-bold text-[#6a1b29]">3. Ingeniería Aplicada</h4>
+                <p class="text-xs text-gray-600">Aplicación de matemáticas y ciencias de la ingeniería a problemas prácticos de la disciplina.</p>
+            </div>
+            <div class="subacademia-item bg-white p-4 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
+                <h4 class="text-sm font-bold text-[#6a1b29]">4. Diseño en Ingeniería</h4>
+                <p class="text-xs text-gray-600">Integración de matemáticas, ciencias naturales y estudios complementarios para desarrollo de elementos, sistemas y procesos.</p>
+            </div>
+            <div class="subacademia-item bg-white p-4 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
+                <h4 class="text-sm font-bold text-[#6a1b29]">5. Ciencias Sociales y Humanidades</h4>
+                <p class="text-xs text-gray-600">Habilidades humanísticas, éticas, sociales y análisis de la problemática social en el mundo globalizado.</p>
+            </div>
+            <div class="subacademia-item bg-white p-4 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
+                <h4 class="text-sm font-bold text-[#6a1b29]">6. Ciencias Económico Administrativas</h4>
+                <p class="text-xs text-gray-600">Comprensión del impacto económico, planificación, gestión, dirección y control de proyectos.</p>
+            </div>
+            <div class="subacademia-item bg-white p-4 rounded-xl border border-gray-100 hover:shadow-md transition-shadow md:col-span-2 lg:col-span-1">
+                <h4 class="text-sm font-bold text-[#6a1b29]">7. Cursos Complementarios</h4>
+                <p class="text-xs text-gray-600">Idiomas, comunicación, desarrollo sustentable, impacto de la tecnología, ética profesional, medio ambiente.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. COORDINACIONES ESPECIALIZADAS -->
+    <div class="space-y-4" data-aos="fade-up" data-aos-delay="300">
+        <h3 class="text-xl font-bold text-gray-950 flex items-center gap-2">
+            <i class="fa-solid fa-briefcase text-amber-500"></i> Coordinaciones Especializadas
+        </h3>
+        <p class="text-xs text-gray-500">Coordinadores nombrados por el Director del Programa Educativo y visto bueno del Colegiado</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="coordinacion-item bg-white p-5 rounded-xl border border-gray-200 hover:shadow-lg transition-all">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="bg-[#6a1b29]/10 p-2 rounded-lg text-[#6a1b29]"><i class="fa-solid fa-graduation-cap"></i></span>
+                    <h4 class="font-bold text-sm text-gray-900">Desarrollo Académico</h4>
+                </div>
+                <p class="text-xs text-gray-600">Coordina, planea, supervisa y fortalece los procesos académicos, asegurando la calidad de la enseñanza y la actualización curricular.</p>
+                <div class="mt-3 flex flex-wrap gap-1">
+                    <span class="text-[9px] bg-gray-100 px-2 py-0.5 rounded-full">Planeación Académica</span>
+                    <span class="text-[9px] bg-gray-100 px-2 py-0.5 rounded-full">Gestión Curricular</span>
+                    <span class="text-[9px] bg-gray-100 px-2 py-0.5 rounded-full">Seguimiento de Indicadores</span>
+                    <span class="text-[9px] bg-gray-100 px-2 py-0.5 rounded-full">Coordinación de Academias</span>
+                    <span class="text-[9px] bg-gray-100 px-2 py-0.5 rounded-full">Innovación Educativa</span>
+                </div>
+            </div>
+            <div class="coordinacion-item bg-white p-5 rounded-xl border border-gray-200 hover:shadow-lg transition-all">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="bg-blue-600/10 p-2 rounded-lg text-blue-600"><i class="fa-solid fa-hand-holding-heart"></i></span>
+                    <h4 class="font-bold text-sm text-gray-900">Acompañamiento Estudiantil</h4>
+                </div>
+                <p class="text-xs text-gray-600">Coordina estrategias de apoyo integral, tutorías, asesorías y seguimiento académico para la permanencia y éxito de los estudiantes.</p>
+                <div class="mt-3 flex flex-wrap gap-1">
+                    <span class="text-[9px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full">Diagnóstico del estudiante</span>
+                    <span class="text-[9px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full">Programa de Asesorías</span>
+                    <span class="text-[9px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full">Atención integral</span>
+                    <span class="text-[9px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full">Seguimiento Escolar</span>
+                    <span class="text-[9px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full">Formación Complementaria</span>
+                </div>
+            </div>
+            <div class="coordinacion-item bg-white p-5 rounded-xl border border-gray-200 hover:shadow-lg transition-all">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="bg-emerald-600/10 p-2 rounded-lg text-emerald-600"><i class="fa-solid fa-user-check"></i></span>
+                    <h4 class="font-bold text-sm text-gray-900">Seguimiento a Egresados</h4>
+                </div>
+                <p class="text-xs text-gray-600">Coordina el seguimiento laboral y profesional de egresados, evaluando la pertinencia del Programa Educativo y la empleabilidad.</p>
+                <div class="mt-3 flex flex-wrap gap-1">
+                    <span class="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full">Estudios de empleabilidad</span>
+                    <span class="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full">Satisfacción de egresados</span>
+                    <span class="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full">Opinión de empleadores</span>
+                    <span class="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full">Bolsa de trabajo</span>
+                    <span class="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full">Educación continua</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. DOCENCIA -->
+    <div class="space-y-4" data-aos="fade-up" data-aos-delay="350">
+        <h3 class="text-xl font-bold text-gray-950 flex items-center gap-2">
+            <i class="fa-solid fa-chalkboard-user text-amber-500"></i> Docencia
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-5 rounded-xl border border-gray-200">
+                <h4 class="font-bold text-sm text-[#6a1b29] flex items-center gap-2"><i class="fa-solid fa-user-tie"></i> Profesor Investigador de Tiempo Completo</h4>
+                <ul class="mt-2 space-y-1 text-xs text-gray-600">
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-green-600 mt-0.5 text-[10px]"></i> Enseñanza, investigación y tutorías</li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-green-600 mt-0.5 text-[10px]"></i> Participación en cuerpos académicos</li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-green-600 mt-0.5 text-[10px]"></i> Diseño de material didáctico</li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-green-600 mt-0.5 text-[10px]"></i> Supervisión de estadías y servicio social</li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-green-600 mt-0.5 text-[10px]"></i> Generación y transferencia de conocimiento</li>
+                </ul>
+            </div>
+            <div class="bg-white p-5 rounded-xl border border-gray-200">
+                <h4 class="font-bold text-sm text-amber-600 flex items-center gap-2"><i class="fa-solid fa-chalkboard"></i> Profesor de Asignatura</h4>
+                <ul class="mt-2 space-y-1 text-xs text-gray-600">
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-green-600 mt-0.5 text-[10px]"></i> Enseñanza de acuerdo al Programa Educativo</li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-green-600 mt-0.5 text-[10px]"></i> Asesorías y tutorías</li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-green-600 mt-0.5 text-[10px]"></i> Trabajo colegiado en academia</li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-green-600 mt-0.5 text-[10px]"></i> Participación en educación continua</li>
+                </ul>
+            </div>
+        </div>
+        <p class="text-xs text-gray-400">Contratación por Secretaría Administrativa acorde al Reglamento de Ingreso, Permanencia y Promoción del Personal Académico (RIPPPA)</p>
+    </div>
+
+    <!-- 7. CUERPOS ACADÉMICOS -->
+    <div class="space-y-4" data-aos="fade-up" data-aos-delay="400">
+        <h3 class="text-xl font-bold text-gray-950 flex items-center gap-2">
+            <i class="fa-solid fa-flask text-amber-500"></i> Cuerpos Académicos
+        </h3>
+        <p class="text-xs text-gray-500">Formados por el Director del Programa Educativo y el Colegiado, en vínculo con la Dirección de Investigación y Posgrado</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="cuerpo-academico-item bg-white p-5 rounded-xl border border-gray-200 hover:shadow-lg transition-all">
+                <h4 class="font-bold text-sm text-emerald-700">Redes Neuronales y Tecnología Educativa</h4>
+                <p class="text-xs text-gray-600 mt-1">Diseño, desarrollo y aplicación de modelos inteligentes para la mejora de los procesos educativos.</p>
+                <div class="mt-2 flex flex-wrap gap-1">
+                    <span class="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full">Deep Learning</span>
+                    <span class="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full">Learning Analytics</span>
+                    <span class="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full">Sistemas Tutores Inteligentes</span>
+                    <span class="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full">Gamificación</span>
+                    <span class="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full">Realidad Virtual</span>
+                </div>
+            </div>
+            <div class="cuerpo-academico-item bg-white p-5 rounded-xl border border-gray-200 hover:shadow-lg transition-all">
+                <h4 class="font-bold text-sm text-emerald-700">Tecnologías de Información y Aplicaciones Móviles</h4>
+                <p class="text-xs text-gray-600 mt-1">Diseño, desarrollo e integración de tecnologías de información, sistemas distribuidos y aplicaciones móviles.</p>
+                <div class="mt-2 flex flex-wrap gap-1">
+                    <span class="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full">Ingeniería de Software</span>
+                    <span class="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full">Aplicaciones Móviles</span>
+                    <span class="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full">DevOps</span>
+                    <span class="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full">Cloud Computing</span>
+                    <span class="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full">Bases de Datos</span>
+                </div>
+            </div>
+            <div class="cuerpo-academico-item bg-white p-5 rounded-xl border border-gray-200 hover:shadow-lg transition-all">
+                <h4 class="font-bold text-sm text-emerald-700">Inteligencia Artificial e Innovación Digital</h4>
+                <p class="text-xs text-gray-600 mt-1">Investigación, desarrollo e implementación de soluciones basadas en IA, ciencia de datos y automatización inteligente.</p>
+                <div class="mt-2 flex flex-wrap gap-1">
+                    <span class="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full">Inteligencia Artificial</span>
+                    <span class="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full">Ciencia de Datos</span>
+                    <span class="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full">Big Data</span>
+                    <span class="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full">Visión Computacional</span>
+                    <span class="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full">Robótica</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. INFRAESTRUCTURA Y LABORATORIOS -->
+    <div class="space-y-4" data-aos="fade-up" data-aos-delay="450">
+        <h3 class="text-xl font-bold text-gray-950 flex items-center gap-2">
+            <i class="fa-solid fa-microchip text-amber-500"></i> Infraestructura y Laboratorios
+        </h3>
+        <p class="text-xs text-gray-500">Coordinadores nombrados por el Director del Programa Educativo, en gestión con la Secretaría Administrativa</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="laboratorio-item bg-white p-5 rounded-xl border border-gray-200 hover:shadow-lg transition-all">
+                <div class="lab-image-container">
+                    <img src="files/lab-opensource.jpg" alt="Laboratorio OpenSource"
+                    onerror="this.style.display='none'; this.parentElement.innerHTML += '<div class=\'placeholder\'><i class=\'fa-brands fa-linux\'></i><span>Agrega una foto</span><small>files/lab-opensource.jpg</small></div>';">
+                </div>
+                <h4 class="font-bold text-sm text-sky-700 flex items-center gap-2"><i class="fa-brands fa-linux"></i> Laboratorio OpenSource</h4>
+                <p class="text-xs text-gray-600 mt-1">Software libre, administración de servidores, computación en la nube, automatización.</p>
+                <div class="mt-2 flex flex-wrap gap-1">
+                    <span class="text-[9px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full">Linux</span>
+                    <span class="text-[9px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full">Docker</span>
+                    <span class="text-[9px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full">Kubernetes</span>
+                    <span class="text-[9px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full">GitLab</span>
+                    <span class="text-[9px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full">Cloud</span>
+                </div>
+            </div>
+            <div class="laboratorio-item bg-white p-5 rounded-xl border border-gray-200 hover:shadow-lg transition-all">
+                <div class="lab-image-container">
+                    <img src="files/lab-mac.jpg" alt="Laboratorio MAC"
+                    onerror="this.style.display='none'; this.parentElement.innerHTML += '<div class=\'placeholder\'><i class=\'fa-brands fa-apple\'></i><span>Agrega una foto</span><small>files/lab-mac.jpg</small></div>';">
+                </div>
+                <h4 class="font-bold text-sm text-sky-700 flex items-center gap-2"><i class="fa-brands fa-apple"></i> Laboratorio MAC</h4>
+                <p class="text-xs text-gray-600 mt-1">Desarrollo de aplicaciones móviles, diseño UX/UI, producción multimedia, ecosistema Apple.</p>
+                <div class="mt-2 flex flex-wrap gap-1">
+                    <span class="text-[9px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full">Swift</span>
+                    <span class="text-[9px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full">iOS</span>
+                    <span class="text-[9px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full">UX/UI</span>
+                    <span class="text-[9px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full">Xcode</span>
+                    <span class="text-[9px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full">Adobe Creative Cloud</span>
+                </div>
+            </div>
+            <div class="laboratorio-item bg-white p-5 rounded-xl border border-gray-200 hover:shadow-lg transition-all">
+                <div class="lab-image-container">
+                    <img src="files/lab-cisco.jpg" alt="Laboratorio Redes CISCO"
+                    onerror="this.style.display='none'; this.parentElement.innerHTML += '<div class=\'placeholder\'><i class=\'fa-solid fa-network-wired\'></i><span>Agrega una foto</span><small>files/lab-cisco.jpg</small></div>';">
+                </div>
+                <h4 class="font-bold text-sm text-sky-700 flex items-center gap-2"><i class="fa-solid fa-network-wired"></i> Laboratorio Redes CISCO</h4>
+                <p class="text-xs text-gray-600 mt-1">Infraestructura de redes, routing, switching, ciberseguridad, certificaciones CCNA/CCNP.</p>
+                <div class="mt-2 flex flex-wrap gap-1">
+                    <span class="text-[9px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full">Routers</span>
+                    <span class="text-[9px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full">Switches</span>
+                    <span class="text-[9px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full">Firewalls</span>
+                    <span class="text-[9px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full">CCNA</span>
+                    <span class="text-[9px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full">CCNP</span>
+                </div>
+            </div>
+            <div class="laboratorio-item bg-white p-5 rounded-xl border border-gray-200 hover:shadow-lg transition-all">
+                <div class="lab-image-container">
+                    <img src="files/lab-40.jpg" alt="Laboratorio 4.0"
+                    onerror="this.style.display='none'; this.parentElement.innerHTML += '<div class=\'placeholder\'><i class=\'fa-solid fa-industry\'></i><span>Agrega una foto</span><small>files/lab-40.jpg</small></div>';">
+                </div>
+                <h4 class="font-bold text-sm text-sky-700 flex items-center gap-2"><i class="fa-solid fa-industry"></i> Laboratorio 4.0</h4>
+                <p class="text-xs text-gray-600 mt-1">IoT, gemelos digitales, machine learning, edge computing, robótica y manufactura avanzada.</p>
+                <div class="mt-2 flex flex-wrap gap-1">
+                    <span class="text-[9px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full">IoT</span>
+                    <span class="text-[9px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full">Digital Twins</span>
+                    <span class="text-[9px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full">Robótica</span>
+                    <span class="text-[9px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full">Visión Artificial</span>
+                    <span class="text-[9px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full">Smart Factory</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========================================== -->
+<!-- SECCIÓN: PERFILES DE PROFESORES           -->
+<!-- ========================================== -->
+<section id="profesores" class="scroll-mt-20 space-y-12">
+    <div class="text-center max-w-3xl mx-auto space-y-3" data-aos="fade-up">
+        <span class="inline-flex items-center gap-2 rounded-full bg-[#6a1b29]/10 px-4 py-2 text-xs font-extrabold uppercase text-[#6a1b29]">
+            <i class="fa-solid fa-chalkboard-user"></i> Nuestros Profesores
+        </span>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-950">Cuerpo Académico</h2>
+        <p class="text-sm text-gray-600">Conoce a los docentes e investigadores que forman parte del programa educativo.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up">
+
+        <!-- Profesor 1: Candy Atonal Nolasco -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1">
+            <div class="flex items-center gap-4 mb-3">
+                <div class="w-20 h-20 rounded-full bg-gray-200 flex-shrink-0 overflow-hidden border-2 border-[#6a1b29]/20">
+                    <img src="files3/perfil-m-Candy.png" alt="Mtra. Candy Atonal Nolasco"
+                         class="w-full h-full object-cover"
+                         onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-3xl text-gray-400\'><i class=\'fa-solid fa-user-tie\'></i></div>';">
+                </div>
+                <div>
+                    <h3 class="font-bold text-sm text-gray-900">Mtra. Candy Atonal Nolasco.</h3>
+                    <p class="text-xs text-[#6a1b29] font-semibold">Profesor Investigador de Tiempo completo</p>
+                    <span class="inline-block text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full mt-0.5">Diseño en Ingeniería</span>
+                </div>
+            </div>
+            <p class="text-xs text-gray-600 leading-relaxed">Licenciatura en Informática y Maestría en Ingeniería.</p>
+            <div class="mt-4 flex gap-2">
+                <a href="files3/perfil-Mtra.Candy.pdf" target="_blank"
+                   class="text-xs bg-[#6a1b29] text-white px-4 py-1.5 rounded-lg hover:bg-[#802334] font-medium flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-file-pdf"></i> Ver perfil completo
+                </a>
+                <a href="mailto:candy.atonal@uptlax.edu.mx" class="text-xs bg-gray-100 text-gray-600 px-3 py-1.5 rounded-lg hover:bg-gray-200 font-medium transition-colors">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Profesor 2 -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1">
+            <div class="flex items-center gap-4 mb-3">
+                <div class="w-20 h-20 rounded-full bg-gray-200 flex-shrink-0 overflow-hidden border-2 border-[#6a1b29]/20">
+                    <img src="files3/perfil-Cristobal.png" alt="Dr. Cristóbal Hernández Medina."
+                         class="w-full h-full object-cover"
+                         onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-3xl text-gray-400\'><i class=\'fa-solid fa-user-tie\'></i></div>';">
+                </div>
+                <div>
+                    <h3 class="font-bold text-sm text-gray-900">Dr. Cristóbal Hernández Medina.</h3>
+                    <p class="text-xs text-[#6a1b29] font-semibold">Profesor Investigador de Tiempo completo</p>
+                    <span class="inline-block text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full mt-0.5">Ciencias Básicas</span>
+                </div>
+            </div>
+            <p class="text-xs text-gray-600 leading-relaxed">Matemáticas Aplicadas (Computación), Profesional Técnico en Electromecánica, Finanzas y Gestión / Sistemas Computacionales, Desarrollo Regional (Economía).</p>
+            <div class="mt-4 flex gap-2">
+                <a href="files3/perfil-Dr.Cristobal.pdf" target="_blank"
+                   class="text-xs bg-[#6a1b29] text-white px-4 py-1.5 rounded-lg hover:bg-[#802334] font-medium flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-file-pdf"></i> Ver perfil completo
+                </a>
+                <a href="mailto:cristobal.medina@uptlax.edu.mx" class="text-xs bg-gray-100 text-gray-600 px-3 py-1.5 rounded-lg hover:bg-gray-200 font-medium transition-colors">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Profesor 3 -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1">
+            <div class="flex items-center gap-4 mb-3">
+                <div class="w-20 h-20 rounded-full bg-gray-200 flex-shrink-0 overflow-hidden border-2 border-[#6a1b29]/20">
+                    <img src="files3/perfil-Mtro.Javier.png" alt="Mtro. Jose Javier Carmona Lopez."
+                         class="w-full h-full object-cover"
+                         onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-3xl text-gray-400\'><i class=\'fa-solid fa-user-tie\'></i></div>';">
+                </div>
+                <div>
+                    <h3 class="font-bold text-sm text-gray-900">Mtro. Jose Javier Carmona Lopez.</h3>
+                    <p class="text-xs text-[#6a1b29] font-semibold">Profesor por Asignatura</p>
+                    <span class="inline-block text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full mt-0.5">Diseño en Ingeniería</span>
+                </div>
+            </div>
+            <p class="text-xs text-gray-600 leading-relaxed">Licenciatura en Informática y Maestría en Ingeniería.</p>
+            <div class="mt-4 flex gap-2">
+                <a href="files/perfil-Mtro.Javier.pdf" target="_blank"
+                   class="text-xs bg-[#6a1b29] text-white px-4 py-1.5 rounded-lg hover:bg-[#802334] font-medium flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-file-pdf"></i> Ver perfil completo
+                </a>
+                <a href="mailto:josejavier.carmona@uptlax.edu.mx" class="text-xs bg-gray-100 text-gray-600 px-3 py-1.5 rounded-lg hover:bg-gray-200 font-medium transition-colors">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Profesor 4 -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1">
+            <div class="flex items-center gap-4 mb-3">
+                <div class="w-20 h-20 rounded-full bg-gray-200 flex-shrink-0 overflow-hidden border-2 border-[#6a1b29]/20">
+                    <img src="files3/perfil-Mtra.Ivette.png" alt="Mtra. Ivette Hernández Dávila"
+                         class="w-full h-full object-cover"
+                         onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-3xl text-gray-400\'><i class=\'fa-solid fa-user-tie\'></i></div>';">
+                </div>
+                <div>
+                    <h3 class="font-bold text-sm text-gray-900">Mtra. Ivette Hernández Dávila.</h3>
+                    <p class="text-xs text-[#6a1b29] font-semibold">Profesor por Asignatura</p>
+                    <span class="inline-block text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full mt-0.5">Diseño en Ingeniería</span>
+                </div>
+            </div>
+            <p class="text-xs text-gray-600 leading-relaxed">Ingeniería en Sistemas Computacionales y Maestría en Sistemas Computacionales.</p>
+            <div class="mt-4 flex gap-2">
+                <a href="files3/perfil-Mtra.Ivette.pdf" target="_blank"
+                   class="text-xs bg-[#6a1b29] text-white px-4 py-1.5 rounded-lg hover:bg-[#802334] font-medium flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-file-pdf"></i> Ver perfil completo
+                </a>
+                <a href="mailto:ivette.hernandez@uptlax.edu.mx" class="text-xs bg-gray-100 text-gray-600 px-3 py-1.5 rounded-lg hover:bg-gray-200 font-medium transition-colors">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Profesor 5 -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1">
+            <div class="flex items-center gap-4 mb-3">
+                <div class="w-20 h-20 rounded-full bg-gray-200 flex-shrink-0 overflow-hidden border-2 border-[#6a1b29]/20">
+                    <img src="files3/perfil-Mtra.MaríaLuisa.png" alt="Mtra. María Luisa Alcántara Muñoz."
+                         class="w-full h-full object-cover"
+                         onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-3xl text-gray-400\'><i class=\'fa-solid fa-user-tie\'></i></div>';">
+                </div>
+                <div>
+                    <h3 class="font-bold text-sm text-gray-900">Mtra. María Luisa Alcántara Muñoz.</h3>
+                    <p class="text-xs text-[#6a1b29] font-semibold">Profesor Investigador de Tiempo completo</p>
+                    <span class="inline-block text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full mt-0.5">Ingeniería Aplicada</span>
+                </div>
+            </div>
+            <p class="text-xs text-gray-600 leading-relaxed">Sistemas computacionales.</p>
+            <div class="mt-4 flex gap-2">
+                <a href="files3/perfil-Mtra.MaríaLuisa.pdf" target="_blank"
+                   class="text-xs bg-[#6a1b29] text-white px-4 py-1.5 rounded-lg hover:bg-[#802334] font-medium flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-file-pdf"></i> Ver perfil completo
+                </a>
+                <a href="mailto:marialuisa.alcantara@uptlax.edu.mx" class="text-xs bg-gray-100 text-gray-600 px-3 py-1.5 rounded-lg hover:bg-gray-200 font-medium transition-colors">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Profesor 6 -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1">
+            <div class="flex items-center gap-4 mb-3">
+                <div class="w-20 h-20 rounded-full bg-gray-200 flex-shrink-0 overflow-hidden border-2 border-[#6a1b29]/20">
+                    <img src="files3/perfil-Mtro.Zenteno.png" alt="Mtro. José Miguel Zenteno Ríos."
+                         class="w-full h-full object-cover"
+                         onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-3xl text-gray-400\'><i class=\'fa-solid fa-user-tie\'></i></div>';">
+                </div>
+                <div>
+                    <h3 class="font-bold text-sm text-gray-900">Mtro. José Miguel Zenteno Ríos.</h3>
+                    <p class="text-xs text-[#6a1b29] font-semibold">Profesor por Asignatura</p>
+                    <span class="inline-block text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full mt-0.5">Diseño en Ingeniería</span>
+                </div>
+            </div>
+            <p class="text-xs text-gray-600 leading-relaxed">Ingeniería en Tecnologías de la Informació y Maestría en Sistemas Computacionales.</p>
+            <div class="mt-4 flex gap-2">
+                <a href="files3/perfil-Mtro.Zenteno.pdf" target="_blank"
+                   class="text-xs bg-[#6a1b29] text-white px-4 py-1.5 rounded-lg hover:bg-[#802334] font-medium flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-file-pdf"></i> Ver perfil completo
+                </a>
+                <a href="mailto:josemiguel.zenteno@uptlax.edu.mx" class="text-xs bg-gray-100 text-gray-600 px-3 py-1.5 rounded-lg hover:bg-gray-200 font-medium transition-colors">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="text-center text-xs text-gray-400 border-t border-gray-100 pt-6" data-aos="fade-up">
+        <i class="fa-solid fa-users text-amber-400 mr-1"></i>
+        Conoce a todo el cuerpo académico en los perfiles completos.
+    </div>
+</section>
+
+<!-- ========================================== -->
+<!-- SECCIÓN: COMUNIDAD                        -->
+<!-- ========================================== -->
+<section id="comunidad" class="scroll-mt-20 space-y-12">
+    <div class="space-y-6">
+        <div class="text-center max-w-2xl mx-auto space-y-3" data-aos="fade-up">
+            <span class="inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-1.5 text-xs font-extrabold uppercase text-amber-700 border border-amber-200/50">
+                <i class="fa-solid fa-quote-right"></i> Testimonios
+            </span>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-950">Opiniones de Egresados</h2>
+            <div class="w-16 h-1 bg-amber-500 mx-auto rounded"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-amber-50/50 rounded-2xl p-5 border border-amber-200/60 relative space-y-2">
+                <i class="fa-solid fa-quote-left text-xl text-amber-300 absolute top-4 right-6"></i>
+                <p class="text-xs text-gray-700 italic">"Estudiar TI en la UPTlax me dio las bases lógicas y técnicas necesarias. Los laboratorios y las prácticas en servidores reales te abren las puertas de inmediato en el sector productivo."</p>
+                <h5 class="text-xs font-bold text-gray-900">— Ing. Israel Ramos M. (Egresado Backend Developer)</h5>
+            </div>
+            <div class="bg-amber-50/50 rounded-2xl p-5 border border-amber-200/60 relative space-y-2">
+                <i class="fa-solid fa-quote-left text-xl text-amber-300 absolute top-4 right-6"></i>
+                <p class="text-xs text-gray-700 italic">"Las estadías profesionales del último cuatrimestre son la mejor práctica. Te vinculas de verdad con empresas del corredor tecnológico y eleva muchísimo la empleabilidad."</p>
+                <h5 class="text-xs font-bold text-gray-900">— Ing. Diana Palacios (Egresada Líder de Base de Datos)</h5>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- NUEVA SECCIÓN: CONTENIDO DE "NOSOTROS"       -->
+<!-- ============================================ -->
+<section id="nosotros-bienvenida" class="scroll-mt-20 py-12">
+    <div class="max-w-4xl mx-auto space-y-12">
+        
+        <!-- Mensaje de Bienvenida -->
+        <div data-aos="fade-up" class="bg-[#1c0a0d] rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl"></div>
+            <div class="relative z-10 space-y-6">
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-amber-300">Mensaje de Bienvenida</h2>
+                <div class="prose prose-invert max-w-none text-gray-200">
+                    <p class="text-lg font-light text-amber-200/80 italic">Donde la innovación se convierte en conocimiento y el conocimiento transforma el futuro</p>
+                    <p class="text-sm md:text-base leading-relaxed">
+                        Hoy vivimos en una sociedad impulsada por la información, la innovación y la conectividad. Las Tecnologías de la Información son el motor que transforma industrias, gobiernos, instituciones educativas y empresas de todos los tamaños. La inteligencia artificial, la ciencia de datos, el desarrollo de software, la computación en la nube, la ciberseguridad, las redes digitales, el Internet de las Cosas y la automatización inteligente están redefiniendo la manera en que trabajamos, producimos, aprendemos y nos relacionamos.
+                    </p>
+                    <p class="text-sm md:text-base leading-relaxed">
+                        En este escenario, la Universidad Politécnica de Tlaxcala forma ingenieras e ingenieros capaces de diseñar, desarrollar, integrar e implementar soluciones tecnológicas que respondan a los desafíos de la transformación digital, impulsando la innovación, la competitividad y el desarrollo sostenible de las organizaciones.
+                    </p>
+                    <p class="text-sm md:text-base leading-relaxed">
+                        Como parte del Nuevo Modelo Educativo del Subsistema de Universidades Tecnológicas y Politécnicas, implementado por la Dirección General de Universidades Tecnológicas y Politécnicas en 2024, nuestro programa evolucionó hacia la Ingeniería en Tecnologías de la Información e Innovación Digital, integrando una formación moderna, flexible y orientada a las necesidades reales del entorno productivo. Este modelo incorpora áreas estratégicas como Desarrollo de Software Multiplataforma, Ciencia de Datos, Inteligencia Artificial, Entornos Virtuales y Negocios Digitales e Infraestructura de Redes Digitales, preparando profesionistas capaces de enfrentar los retos tecnológicos del presente y del futuro.
+                    </p>
+                    <p class="text-sm md:text-base leading-relaxed">
+                        Nuestra fortaleza no se limita al aula. La formación se desarrolla mediante proyectos integradores, laboratorios especializados, estadías profesionales, investigación aplicada, certificaciones tecnológicas y una estrecha vinculación con empresas e instituciones públicas y privadas, permitiendo que nuestros estudiantes adquieran experiencia práctica y desarrollen soluciones con impacto real.
+                    </p>
+                    <p class="text-sm md:text-base leading-relaxed">
+                        La Universidad Politécnica de Tlaxcala se encuentra estratégicamente ubicada en la región centro-sur del estado, una zona que concentra más del 80 % de la actividad comercial, industrial y de servicios de Tlaxcala, además de mantener una comunicación privilegiada con los principales corredores industriales del centro del país, incluyendo Puebla, Ciudad de México, Estado de México, Hidalgo y la región del Bajío. Esta ubicación favorece una estrecha colaboración con empresas nacionales e internacionales, ampliando las oportunidades de prácticas profesionales, estadías, proyectos tecnológicos, investigación aplicada y empleabilidad para nuestros estudiantes.
+                    </p>
+                    <p class="text-sm md:text-base leading-relaxed">
+                        Formar parte de nuestra comunidad significa estudiar en una institución reconocida por la calidad de su oferta educativa y por pertenecer al Subsistema de Universidades Tecnológicas y Politécnicas, referente nacional en educación superior tecnológica por su modelo basado en competencias profesionales, su estrecha vinculación con el sector productivo y su alta capacidad para incorporar exitosamente a sus egresados al mercado laboral.
+                    </p>
+                    <p class="text-sm md:text-base leading-relaxed">
+                        Nuestros estudiantes desarrollan competencias técnicas, científicas, digitales y humanas que les permiten participar en proyectos de innovación, emprendimiento tecnológico y transformación digital, con una sólida formación ética, responsabilidad social y compromiso con el desarrollo sostenible.
+                    </p>
+                    <p class="text-amber-300 font-display text-xl md:text-2xl mt-6">
+                        Bienvenido a la Universidad Politécnica de Tlaxcala. Bienvenido a la Ingeniería en Tecnologías de la Información e Innovación Digital. Aquí comienza tu futuro, donde la tecnología inspira, la innovación transforma y el talento construye el mañana.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Misión UPTx -->
+        <div id="nosotros-mision" data-aos="fade-up" data-aos-delay="100" class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 bg-rose-50 rounded-xl flex items-center justify-center text-[#6a1b29] text-lg">
+                    <i class="fa-solid fa-bullseye"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">Misión UPTx</h3>
+            </div>
+            <p class="text-sm text-gray-600 leading-relaxed">Formamos profesionistas y emprendedores competentes, innovadores y socialmente responsables, con una visión global, mediante un modelo educativo de excelencia centrado en la inclusión, la equidad, la interculturalidad, la investigación aplicada y la vinculación con los sectores social y productivo, para contribuir al desarrollo científico, tecnológico, económico, ambiental y humano sustentable de Tlaxcala, México y el mundo.</p>
+        </div>
+
+        <!-- Visión UPTx -->
+        <div id="nosotros-vision" data-aos="fade-up" data-aos-delay="150" class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center text-amber-600 text-lg">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">Visión UPTx 2035</h3>
+            </div>
+            <p class="text-sm text-gray-600 leading-relaxed">Ser una universidad politécnica reconocida nacional e internacionalmente por la excelencia y pertinencia de sus programas educativos, la calidad de su investigación aplicada, la innovación social y tecnológica, y su compromiso con la inclusión, la equidad de género, la interculturalidad y el desarrollo sustentable, generando soluciones de alto impacto para el bienestar de la sociedad y la transformación de su entorno.</p>
+        </div>
+
+        <!-- Política de Calidad -->
+        <div id="nosotros-politica" data-aos="fade-up" data-aos-delay="200" class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 text-lg">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">Política de Calidad</h3>
+            </div>
+            <p class="text-sm text-gray-600 leading-relaxed">En la Universidad Politécnica de Tlaxcala formamos profesionales competentes, innovadores y socialmente responsables mediante un Sistema de Gestión de la Calidad orientado a la excelencia, la mejora continua, la innovación, la inclusión, la equidad, la interculturalidad y el desarrollo sustentable. Generamos valor para nuestros estudiantes, personal universitario, sectores social y productivo y demás partes interesadas, mediante procesos pertinentes, eficientes y transparentes que contribuyen al desarrollo científico, tecnológico, económico, ambiental y humano, en cumplimiento de los requisitos aplicables y del compromiso institucional con la calidad.</p>
+        </div>
+
+        <!-- Objetivos de Calidad -->
+        <div id="nosotros-objetivos" data-aos="fade-up" data-aos-delay="250" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                <h4 class="font-bold text-gray-900 mb-2">Objetivo de Calidad 1</h4>
+                <p class="text-sm text-gray-600 leading-relaxed">Fortalecer la formación integral de profesionales competentes mediante procesos educativos innovadores, inclusivos y centrados en el aprendizaje, promoviendo la excelencia académica, la investigación aplicada, la responsabilidad social, la equidad, la interculturalidad y el desarrollo sostenible.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                <h4 class="font-bold text-gray-900 mb-2">Objetivo de Calidad 2</h4>
+                <p class="text-sm text-gray-600 leading-relaxed">Consolidar la vinculación con los sectores social, productivo, gubernamental e internacional para impulsar la innovación, la transferencia del conocimiento y el desarrollo tecnológico, atendiendo con pertinencia las necesidades del entorno y contribuyendo al bienestar social y al desarrollo sostenible.</p>
+            </div>
+        </div>
+
+        <!-- Objetivo General del PE -->
+        <div id="nosotros-objetivo-pe" data-aos="fade-up" data-aos-delay="300" class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 text-lg">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">Objetivo General del PE</h3>
+            </div>
+            <p class="text-sm text-gray-600 leading-relaxed">Formar ingenieros competentes en Tecnologías de la Información e Innovación Digital, capaces de diseñar, desarrollar, implementar y gestionar soluciones tecnológicas innovadoras que respondan a las necesidades del entorno productivo y social, contribuyendo a la transformación digital y al desarrollo sostenible de la región y el país.</p>
+        </div>
+
+        <!-- Plan de Desarrollo 2024-2028 -->
+        <div id="nosotros-plan-desarrollo" data-aos="fade-up" data-aos-delay="350" class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 bg-purple-50 rounded-xl flex items-center justify-center text-purple-600 text-lg">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">Plan de Desarrollo 2024-2028</h3>
+            </div>
+            <ul class="space-y-2 text-sm text-gray-600">
+                <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Eje 1:</strong> Fortalecimiento de la calidad educativa y pertinencia del PE.</span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Eje 2:</strong> Impulso a la investigación aplicada, innovación y desarrollo tecnológico.</span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Eje 3:</strong> Fortalecimiento de la vinculación con los sectores productivo y social.</span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Eje 4:</strong> Consolidación del cuerpo académico y desarrollo profesional docente.</span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Eje 5:</strong> Mejora continua de la infraestructura y equipamiento especializado.</span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Eje 6:</strong> Internacionalización y movilidad académica.</span></li>
+            </ul>
+        </div>
+
+        <!-- Planes de Trabajo 2024-2028 -->
+        <div id="nosotros-planes-trabajo" data-aos="fade-up" data-aos-delay="400" class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 text-lg">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">Planes de Trabajo 2024-2028</h3>
+            </div>
+            <ul class="space-y-2 text-sm text-gray-600">
+                <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Plan Anual 2024:</strong> Arranque del nuevo plan de estudios y consolidación de especialidades.</span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Plan Anual 2025:</strong> Fortalecimiento de laboratorios y certificaciones tecnológicas.</span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Plan Anual 2026:</strong> Evaluación y actualización de contenidos curriculares.</span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Plan Anual 2027:</strong> Consolidación de la investigación aplicada y proyectos de innovación.</span></li>
+                <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Plan Anual 2028:</strong> Evaluación integral del PE y preparación para la siguiente acreditación.</span></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- ============================================ -->
+<!-- FOOTER                                      -->
+<!-- ============================================ -->
+<footer class="bg-gray-950 text-gray-400 py-10 px-6 border-t border-gray-800 mt-24">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-xs">
+        <div class="flex items-center gap-3">
+            <img src="files/u.webp" alt="Escudo UPTx" class="w-8 h-8 object-contain opacity-90">
+            <p class="font-bold text-white">Universidad Politécnica de Tlaxcala</p>
+        </div>
+        <p>Carretera Federal Tlaxcala - Cuernavaca Km. 9.5, Tepeyanco, Tlaxcala.</p>
+    </div>
+</footer>
+
+<!-- ============================================ -->
+<!-- JAVASCRIPT                                  -->
+<!-- ============================================ -->
+<script>
+    // ============================================
+    // INICIALIZACIÓN AOS
+    // ============================================
+    document.querySelectorAll('main section > div').forEach((block, index) => {
+        if (!block.hasAttribute('data-aos')) {
+            block.setAttribute('data-aos', index % 2 === 0 ? 'fade-up' : 'fade-right');
+        }
+        if (!block.hasAttribute('data-aos-delay')) {
+            block.setAttribute('data-aos-delay', String(Math.min(index * 45, 180)));
+        }
+    });
+
+    AOS.init({ duration: 850, once: false, offset: 90, easing: 'ease-out-cubic' });
+
+    // ============================================
+    // NAVEGACIÓN
+    // ============================================
+    const siteNav = document.getElementById('site-nav');
+
+    function updateNavState() {
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+        siteNav.classList.toggle('nav-scrolled', window.scrollY > 36);
+        siteNav.style.setProperty('--scroll-progress', `${Math.min(progress, 100)}%`);
+    }
+
+    updateNavState();
+    window.addEventListener('scroll', updateNavState, { passive: true });
+
+    function toggleMenu() {
+        const menu = document.getElementById('mobile-menu');
+        const button = document.getElementById('menu-toggle');
+        const isOpen = menu.classList.toggle('open');
+        button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        button.innerHTML = isOpen ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+    }
+
+    function closeMenu() {
+        const menu = document.getElementById('mobile-menu');
+        const button = document.getElementById('menu-toggle');
+        if (!menu || !button) return;
+        menu.classList.remove('open');
+        button.setAttribute('aria-expanded', 'false');
+        button.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    }
+
+    // ============================================
+    // NUEVO: FUNCIONALIDAD DEL DROPDOWN DE NOSOTROS
+    // ============================================
+    function toggleNosotrosDropdown() {
+        const dropdown = document.getElementById('nosotros-dropdown');
+        const arrow = document.getElementById('nosotros-arrow');
+        const isOpen = dropdown.classList.contains('scale-100');
+        
+        if (isOpen) {
+            dropdown.classList.remove('scale-100', 'opacity-100', 'pointer-events-auto');
+            dropdown.classList.add('scale-95', 'opacity-0', 'pointer-events-none');
+            if(arrow) arrow.classList.remove('rotate-180');
+        } else {
+            dropdown.classList.remove('scale-95', 'opacity-0', 'pointer-events-none');
+            dropdown.classList.add('scale-100', 'opacity-100', 'pointer-events-auto');
+            if(arrow) arrow.classList.add('rotate-180');
+        }
+    }
+
+    function closeNosotrosDropdown() {
+        const dropdown = document.getElementById('nosotros-dropdown');
+        const arrow = document.getElementById('nosotros-arrow');
+        if (dropdown.classList.contains('scale-100')) {
+            dropdown.classList.remove('scale-100', 'opacity-100', 'pointer-events-auto');
+            dropdown.classList.add('scale-95', 'opacity-0', 'pointer-events-none');
+            if(arrow) arrow.classList.remove('rotate-180');
+        }
+    }
+
+    // Cerrar dropdown al hacer clic fuera
+    document.addEventListener('click', function(event) {
+        const dropdown = document.getElementById('nosotros-dropdown');
+        const button = event.target.closest('.relative.group');
+        if (!button && dropdown.classList.contains('scale-100')) {
+            closeNosotrosDropdown();
+        }
+    });
+
+    // ============================================
+    // FUNCIONES PARA MAPAS CURRICULARES
+    // ============================================
+    function switchPlan(planId) {
+        document.querySelectorAll('.plan-content').forEach(el => el.style.display = 'none');
+
+        ['plan2018', 'plan2024'].forEach(id => {
+            const btn = document.getElementById('btn-' + id);
+            if (btn) {
+                btn.classList.remove('text-[#6a1b29]', 'border-[#6a1b29]');
+                btn.classList.add('text-gray-400', 'border-transparent');
+            }
+        });
+
+        const selectedPlan = document.getElementById(planId);
+        if (selectedPlan) selectedPlan.style.display = 'block';
+
+        const activeBtn = document.getElementById('btn-' + planId);
+        if (activeBtn) {
+            activeBtn.classList.remove('text-gray-400', 'border-transparent');
+            activeBtn.classList.add('text-[#6a1b29]', 'border-[#6a1b29]');
+        }
+    }
+
+    function switchSpecialty(specialtyId) {
+        document.querySelectorAll('.specialty-content').forEach(el => el.style.display = 'none');
+
+        ['redes', 'ia', 'datos', 'multi'].forEach(id => {
+            const btn = document.getElementById('sbtn-' + id);
+            if (btn) {
+                btn.classList.remove('bg-[#6a1b29]', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-600', 'hover:bg-gray-300');
+            }
+        });
+
+        const selectedSpecialty = document.getElementById('specialty-' + specialtyId);
+        if (selectedSpecialty) selectedSpecialty.style.display = 'block';
+
+        const activeBtn = document.getElementById('sbtn-' + specialtyId);
+        if (activeBtn) {
+            activeBtn.classList.remove('bg-gray-200', 'text-gray-600', 'hover:bg-gray-300');
+            activeBtn.classList.add('bg-[#6a1b29]', 'text-white');
+        }
+    }
+</script>
+
+</body>
+
+</html>

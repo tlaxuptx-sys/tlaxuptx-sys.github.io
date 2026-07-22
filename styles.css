@@ -1,0 +1,308 @@
+/* ============================================
+   ESTILOS PRINCIPALES
+   ============================================ */
+
+   .tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+body {
+    font-family: 'Inter', ui-sans-serif, system-ui;
+    scroll-behavior: smooth;
+    background:
+        radial-gradient(circle at top left, rgba(212, 175, 106, .16), transparent 32rem),
+        linear-gradient(180deg, #fffaf5 0%, #f8fafc 42%, #ffffff 100%);
+}
+
+.font-display {
+    font-family: 'Playfair Display', serif;
+}
+
+/* ============================================
+   MODAL NOSOTROS
+   ============================================ */
+#nosotros-modal {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .45s ease;
+}
+
+#nosotros-modal.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#nosotros-panel {
+    transform: translateY(24px) scale(.98);
+    opacity: 0;
+    transition: all .5s cubic-bezier(.16, 1, .3, 1);
+}
+
+#nosotros-modal.open #nosotros-panel {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+/* ============================================
+   HERO Y NAVEGACIÓN
+   ============================================ */
+.photo-frame::before {
+    content: "";
+    position: absolute;
+    inset: -10px;
+    border: 2px solid #d4af6a;
+    border-radius: 1.25rem;
+    z-index: 0;
+}
+
+.program-hero-photo {
+    mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, .86) 42%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, .86) 42%, transparent 100%);
+}
+
+.site-nav {
+    --scroll-progress: 0%;
+    background: linear-gradient(180deg, rgba(28, 10, 13, .72), rgba(28, 10, 13, .24));
+    border-bottom: 1px solid rgba(255, 255, 255, .12);
+    transition: background .35s ease, box-shadow .35s ease, transform .35s ease, min-height .35s ease;
+}
+
+.site-nav::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: var(--scroll-progress);
+    height: 2px;
+    background: linear-gradient(90deg, #fbbf24, #fde68a);
+    transition: width .12s linear;
+}
+
+.site-nav.nav-scrolled {
+    background: rgba(91, 22, 35, .96);
+    box-shadow: 0 18px 42px rgba(17, 24, 39, .22);
+    border-bottom-color: rgba(255, 255, 255, .08);
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    border-radius: 999px;
+    padding: .7rem .9rem;
+    font-size: .78rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, .86);
+    transition: all .25s ease;
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, .12);
+}
+
+.mobile-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .32s ease;
+}
+
+.mobile-menu.open {
+    max-height: 26rem;
+}
+
+/* ============================================
+   ANIMACIONES
+   ============================================ */
+@keyframes heroZoom {
+    from {
+        transform: scale(1.08);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeUpSoft {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes floatSoft {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+.hero-bg {
+    animation: heroZoom 1.8s ease-out both;
+}
+
+.hero-reveal {
+    opacity: 0;
+    animation: fadeUpSoft .85s cubic-bezier(.16, 1, .3, 1) forwards;
+}
+
+.hero-delay-1 {
+    animation-delay: .15s;
+}
+.hero-delay-2 {
+    animation-delay: .3s;
+}
+.hero-delay-3 {
+    animation-delay: .45s;
+}
+.hero-delay-4 {
+    animation-delay: .6s;
+}
+
+.float-soft {
+    animation: floatSoft 3.8s ease-in-out infinite;
+}
+
+/* ============================================
+   ESTRUCTURA ORGANIZACIONAL
+   ============================================ */
+.org-card {
+    transition: all 0.3s ease;
+}
+.org-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+}
+.org-badge {
+    display: inline-block;
+    background: #6a1b29;
+    color: white;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.2rem 0.8rem;
+    border-radius: 999px;
+    letter-spacing: 0.05em;
+}
+.org-badge-amber {
+    background: #d4af6a;
+    color: #4a1119;
+}
+.subacademia-item {
+    border-left: 3px solid #d4af6a;
+    padding-left: 1rem;
+}
+.coordinacion-item {
+    border-left: 3px solid #6a1b29;
+    padding-left: 1rem;
+}
+.laboratorio-item {
+    border-left: 3px solid #0ea5e9;
+    padding-left: 1rem;
+}
+.cuerpo-academico-item {
+    border-left: 3px solid #059669;
+    padding-left: 1rem;
+}
+.funcion-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: #4b5563;
+    padding: 0.25rem 0;
+}
+.funcion-item i {
+    color: #6a1b29;
+    margin-top: 0.15rem;
+    font-size: 0.65rem;
+}
+
+/* ============================================
+   LABORATORIOS
+   ============================================ */
+.lab-image-container {
+    width: 100%;
+    height: 160px;
+    background: #f3f4f6;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #d1d5db;
+    transition: all 0.3s ease;
+}
+.lab-image-container:hover {
+    border-color: #6a1b29;
+    background: #fce4e8;
+}
+.lab-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.lab-image-container .placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+    font-size: 0.7rem;
+    gap: 0.5rem;
+    text-align: center;
+    padding: 1rem;
+}
+.lab-image-container .placeholder i {
+    font-size: 2.5rem;
+    opacity: 0.5;
+}
+.lab-image-container .placeholder span {
+    font-weight: 500;
+}
+.lab-image-container .placeholder small {
+    font-size: 0.6rem;
+    color: #b0b8c4;
+}
+
+/* ============================================
+   MAPAS CURRICULARES EN PDF
+   ============================================ */
+.plan-content {
+    display: block;
+}
+.plan-content.hidden {
+    display: none;
+}
+.specialty-content {
+    display: block;
+}
+.specialty-content.hidden {
+    display: none;
+}
+
+.pdf-viewer {
+    width: 100%;
+    height: 600px;
+    border: none;
+    border-radius: 0.75rem;
+}
+
+@media (max-width: 640px) {
+    .pdf-viewer {
+        height: 400px;
+    }
+}
