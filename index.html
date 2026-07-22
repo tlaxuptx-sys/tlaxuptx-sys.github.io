@@ -47,7 +47,7 @@
     <link rel="stylesheet" href="styles.css">
     
     <style>
-        /* Estilos para la sección oculta de Nosotros */
+        /* Estilos para el modal de Nosotros */
         #nosotros-container {
             display: none;
             position: fixed;
@@ -65,13 +65,15 @@
         }
         .nosotros-panel {
             background-color: #fffaf5; /* Color crema claro */
-            max-width: 1000px;
+            max-width: 900px;
             width: 100%;
             border-radius: 24px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             position: relative;
             margin-top: 2rem;
             margin-bottom: 2rem;
+            padding: 2.5rem;
+            min-height: 300px;
         }
         /* Ajuste para que el scroll funcione bien dentro del modal */
         #nosotros-container::-webkit-scrollbar {
@@ -84,6 +86,55 @@
         #nosotros-container::-webkit-scrollbar-thumb {
             background: #6a1b29;
             border-radius: 4px;
+        }
+        .nosotros-section {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .nosotros-section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Estilos para el modal de Ubicación */
+        #ubicacion-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        #ubicacion-modal.open {
+            display: flex;
+        }
+        .ubicacion-panel {
+            background-color: white;
+            max-width: 1000px;
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+            padding: 1.5rem;
+            max-height: 90vh;
+            overflow: hidden;
+        }
+        .map-container {
+            width: 100%;
+            height: 500px;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
     </style>
 </head>
@@ -102,7 +153,7 @@
                 </a>
                 <div class="hidden lg:flex items-center gap-1">
                     <a href="#aspirantes" class="nav-link"><i class="fa-solid fa-user-graduate"></i> Contexto</a>
-                    <a href="#academica" class="nav-link"><i class="fa-solid fa-graduation-cap"></i> Oferta académica</a>
+                    <a href="#academica" class="nav-link"><i class="fa-solid fa-graduation-cap"></i> Oferta educativa</a>
                     <a href="#estructura" class="nav-link"><i class="fa-solid fa-sitemap"></i> Estructura organizacional</a>
                     <a href="#profesores" class="nav-link"><i class="fa-solid fa-chalkboard-user"></i> Profesores</a>
                     <a href="#comunidad" class="nav-link"><i class="fa-solid fa-users"></i> Comunidad</a>
@@ -121,7 +172,8 @@
                                 <button onclick="openNosotrosSection('nosotros-objetivos')" class="px-4 py-2 hover:bg-white/10 flex items-center gap-3 transition-colors text-left w-full text-white"><i class="fa-solid fa-list-check text-amber-400 w-5"></i> Objetivos de Calidad</button>
                                 <button onclick="openNosotrosSection('nosotros-objetivo-pe')" class="px-4 py-2 hover:bg-white/10 flex items-center gap-3 transition-colors text-left w-full text-white"><i class="fa-solid fa-graduation-cap text-amber-400 w-5"></i> Objetivo General del PE</button>
                                 <button onclick="openNosotrosSection('nosotros-plan-desarrollo')" class="px-4 py-2 hover:bg-white/10 flex items-center gap-3 transition-colors text-left w-full text-white"><i class="fa-solid fa-chart-line text-amber-400 w-5"></i> Plan de Desarrollo 2024-2028</button>
-                                <button onclick="openNosotrosSection('nosotros-planes-trabajo')" class="px-4 py-2 hover:bg-white/10 flex items-center gap-3 transition-colors text-left w-full text-white"><i class="fa-solid fa-calendar-check text-amber-400 w-5"></i> Planes de Trabajo 2024-2028</button>
+                                <button onclick="openNosotrosSection('nosotros-planes-trabajo')" class="px-4 py-2 hover:bg-white/10 flex items-center gap-3 transition-colors text-left w-full text-white"><i class="fa-solid fa-calendar-check text-amber-400 w-5"></i> Planes de Trabajo TIID 2024-2028</button>
+                                <button onclick="openUbicacion()" class="px-4 py-2 hover:bg-white/10 flex items-center gap-3 transition-colors text-left w-full text-white"><i class="fa-solid fa-location-dot text-amber-400 w-5"></i> Ubicación</button>
                             </div>
                         </div>
                     </div>
@@ -149,7 +201,8 @@
                     <button onclick="openNosotrosSection('nosotros-objetivos'); closeMenu();" class="nav-link pl-6 text-left w-full"><i class="fa-solid fa-list-check w-5 text-amber-400"></i> Objetivos de Calidad</button>
                     <button onclick="openNosotrosSection('nosotros-objetivo-pe'); closeMenu();" class="nav-link pl-6 text-left w-full"><i class="fa-solid fa-graduation-cap w-5 text-amber-400"></i> Objetivo General del PE</button>
                     <button onclick="openNosotrosSection('nosotros-plan-desarrollo'); closeMenu();" class="nav-link pl-6 text-left w-full"><i class="fa-solid fa-chart-line w-5 text-amber-400"></i> Plan de Desarrollo 2024-2028</button>
-                    <button onclick="openNosotrosSection('nosotros-planes-trabajo'); closeMenu();" class="nav-link pl-6 text-left w-full"><i class="fa-solid fa-calendar-check w-5 text-amber-400"></i> Planes de Trabajo 2024-2028</button>
+                    <button onclick="openNosotrosSection('nosotros-planes-trabajo'); closeMenu();" class="nav-link pl-6 text-left w-full"><i class="fa-solid fa-calendar-check w-5 text-amber-400"></i> Planes de Trabajo TIID 2024-2028</button>
+                    <button onclick="openUbicacion(); closeMenu();" class="nav-link pl-6 text-left w-full"><i class="fa-solid fa-location-dot w-5 text-amber-400"></i> Ubicación</button>
                 </div>
             </div>
         </div>
@@ -236,29 +289,31 @@
         <div class="absolute -left-10 -top-10 w-56 h-56 bg-white/5 rounded-full blur-2xl"></div>
     </div>
 
-    <!-- Misión, Visión y Área de Influencia -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div data-aos="fade-up" data-aos-delay="0"
-        class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-3 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-        <div
-        class="w-10 h-10 bg-rose-50 rounded-xl flex items-center justify-center text-[#6a1b29] text-lg font-bold">
-        <i class="fa-solid fa-bullseye"></i>
+    <!-- Misión, Visión y Área de Influencia CENTRADAS -->
+    <div class="space-y-8">
+        <!-- Contenedor para Misión y Visión (centradas) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div data-aos="fade-up" data-aos-delay="0"
+            class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-3 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+            <div
+            class="w-10 h-10 bg-rose-50 rounded-xl flex items-center justify-center text-[#6a1b29] text-lg font-bold">
+            <i class="fa-solid fa-bullseye"></i>
+        </div>
+        <h3 class="text-base font-bold text-gray-900">Misión PE TIID</h3>
+        <p class="text-xs text-gray-600 leading-relaxed">Formar profesionistas integrales en Tecnologías
+            de la Información e Innovación Digital, mediante un modelo educativo de excelencia basado en
+            competencias, la investigación aplicada, la innovación tecnológica y la vinculación con los
+            sectores social y productivo, en un entorno inclusivo, equitativo e intercultural, para
+            desarrollar soluciones digitales que contribuyan al bienestar social, la transformación
+            tecnológica y el desarrollo sustentable de su entorno.</p>
+        <p class="text-[10px] text-gray-400 font-semibold uppercase tracking-wide">Vigente a partir de
+            julio 2026</p>
     </div>
-    <h3 class="text-base font-bold text-gray-900">Misión PE TIID</h3>
-    <p class="text-xs text-gray-600 leading-relaxed">Formar profesionistas integrales en Tecnologías
-        de la Información e Innovación Digital, mediante un modelo educativo de excelencia basado en
-        competencias, la investigación aplicada, la innovación tecnológica y la vinculación con los
-        sectores social y productivo, en un entorno inclusivo, equitativo e intercultural, para
-        desarrollar soluciones digitales que contribuyan al bienestar social, la transformación
-        tecnológica y el desarrollo sustentable de su entorno.</p>
-    <p class="text-[10px] text-gray-400 font-semibold uppercase tracking-wide">Vigente a partir de
-        julio 2026</p>
-</div>
-<div data-aos="fade-up" data-aos-delay="100"
-class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-3 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-<div
-class="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center text-amber-600 text-lg font-bold">
-<i class="fa-solid fa-eye"></i>
+    <div data-aos="fade-up" data-aos-delay="100"
+    class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-3 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+    <div
+    class="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center text-amber-600 text-lg font-bold">
+    <i class="fa-solid fa-eye"></i>
 </div>
 <h3 class="text-base font-bold text-gray-900">Visión PE TIID 2035</h3>
 <p class="text-xs text-gray-600 leading-relaxed">Ser un Programa Educativo reconocido nacional
@@ -269,16 +324,33 @@ class="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center text-am
 <p class="text-[10px] text-gray-400 font-semibold uppercase tracking-wide">Vigente a partir de
     julio 2026</p>
 </div>
-<div data-aos="fade-up" data-aos-delay="200"
-class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-3 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-<div
-class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 text-lg font-bold">
-<i class="fa-solid fa-map-location-dot"></i>
 </div>
-<h3 class="text-base font-bold text-gray-900">Área de Influencia</h3>
-<p class="text-xs text-gray-600 leading-relaxed">Despliegue operativo y de desarrollo tecnológico
-    con impacto prioritario en los parques industriales del corredor Tlaxcala, Puebla e Hidalgo, así
-    como proyección de software internacional.</p>
+
+<!-- ÁREA DE INFLUENCIA - MAPA GRANDE CON MÚLTIPLES INSTITUCIONES (Debajo, ancho completo) -->
+<div data-aos="fade-up" data-aos-delay="200"
+class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-4 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 w-full">
+    <div class="flex items-center gap-3 mb-2">
+        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 text-xl font-bold shrink-0">
+            <i class="fa-solid fa-map-location-dot"></i>
+        </div>
+        <div>
+            <h3 class="text-xl font-bold text-gray-900">Área de Influencia</h3>
+            <p class="text-xs text-gray-500">Instituciones de Educación Superior con carreras en TI y afines en la región.</p>
+        </div>
+    </div>
+    <div class="w-full h-96 md:h-[500px] rounded-xl overflow-hidden border border-gray-200 shadow-inner relative">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d120665.89059186232!2d-98.3073507176564!3d19.43661789594296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1suniversidades%20tecnologicas%20y%20polit%C3%A9cnicas%20tlaxcala%20puebla%20hidalgo%20tecnologias%20informacion!5e0!3m2!1ses!2smx!4v1721670000000!5m2!1ses!2smx" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="flex flex-wrap gap-2 pt-2">
+        <span class="text-[10px] bg-blue-50 text-blue-700 px-3 py-1 rounded-full border border-blue-200"><i class="fa-solid fa-location-dot mr-1"></i> Universidad Politécnica de Tlaxcala</span>
+        <span class="text-[10px] bg-blue-50 text-blue-700 px-3 py-1 rounded-full border border-blue-200"><i class="fa-solid fa-location-dot mr-1"></i> UVP Campus Tlaxcala</span>
+        <span class="text-[10px] bg-blue-50 text-blue-700 px-3 py-1 rounded-full border border-blue-200"><i class="fa-solid fa-location-dot mr-1"></i> TecNM Campus Apizaco</span>
+        <span class="text-[10px] bg-blue-50 text-blue-700 px-3 py-1 rounded-full border border-blue-200"><i class="fa-solid fa-location-dot mr-1"></i> Universidad Tecnológica de Tlaxcala</span>
+        <span class="text-[10px] bg-blue-50 text-blue-700 px-3 py-1 rounded-full border border-blue-200"><i class="fa-solid fa-location-dot mr-1"></i> Instituto Tecnológico de Puebla</span>
+        <span class="text-[10px] bg-blue-50 text-blue-700 px-3 py-1 rounded-full border border-blue-200"><i class="fa-solid fa-location-dot mr-1"></i> Universidad Politécnica de Puebla</span>
+        <span class="text-[10px] bg-blue-50 text-blue-700 px-3 py-1 rounded-full border border-blue-200"><i class="fa-solid fa-location-dot mr-1"></i> Universidad Politécnica de Tulancingo</span>
+    </div>
 </div>
 </div>
 </section>
@@ -1057,142 +1129,184 @@ class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blu
 </main>
 
 <!-- ============================================ -->
-<!-- SECCIÓN OCULTA DE "NOSOTROS" (MODAL)         -->
+<!-- MODAL DE NOSOTROS (SECCIÓN INDIVIDUAL)       -->
 <!-- ============================================ -->
 <div id="nosotros-container">
-    <div class="nosotros-panel p-8 md:p-12">
+    <div class="nosotros-panel">
+        <!-- Botón de cerrar -->
         <button onclick="closeNosotrosContainer()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-[#6a1b29]/10 hover:bg-[#6a1b29]/20 text-[#6a1b29] flex items-center justify-center transition-colors focus:outline-none">
             <i class="fa-solid fa-xmark text-xl"></i>
         </button>
 
-        <div class="space-y-12 max-w-4xl mx-auto">
-            
-            <!-- Mensaje de Bienvenida -->
-            <div id="nosotros-bienvenida" data-aos="fade-up" class="bg-[#1c0a0d] rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden scroll-mt-8">
-                <div class="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl"></div>
-                <div class="relative z-10 space-y-6">
-                    <h2 class="font-display text-3xl md:text-4xl font-bold text-amber-300">Mensaje de Bienvenida</h2>
-                    <div class="prose prose-invert max-w-none text-gray-200">
-                        <p class="text-lg font-light text-amber-200/80 italic">Donde la innovación se convierte en conocimiento y el conocimiento transforma el futuro</p>
-                        <p class="text-sm md:text-base leading-relaxed">
-                            Hoy vivimos en una sociedad impulsada por la información, la innovación y la conectividad. Las Tecnologías de la Información son el motor que transforma industrias, gobiernos, instituciones educativas y empresas de todos los tamaños. La inteligencia artificial, la ciencia de datos, el desarrollo de software, la computación en la nube, la ciberseguridad, las redes digitales, el Internet de las Cosas y la automatización inteligente están redefiniendo la manera en que trabajamos, producimos, aprendemos y nos relacionamos.
-                        </p>
-                        <p class="text-sm md:text-base leading-relaxed">
-                            En este escenario, la Universidad Politécnica de Tlaxcala forma ingenieras e ingenieros capaces de diseñar, desarrollar, integrar e implementar soluciones tecnológicas que respondan a los desafíos de la transformación digital, impulsando la innovación, la competitividad y el desarrollo sostenible de las organizaciones.
-                        </p>
-                        <p class="text-sm md:text-base leading-relaxed">
-                            Como parte del Nuevo Modelo Educativo del Subsistema de Universidades Tecnológicas y Politécnicas, implementado por la Dirección General de Universidades Tecnológicas y Politécnicas en 2024, nuestro programa evolucionó hacia la Ingeniería en Tecnologías de la Información e Innovación Digital, integrando una formación moderna, flexible y orientada a las necesidades reales del entorno productivo. Este modelo incorpora áreas estratégicas como Desarrollo de Software Multiplataforma, Ciencia de Datos, Inteligencia Artificial, Entornos Virtuales y Negocios Digitales e Infraestructura de Redes Digitales, preparando profesionistas capaces de enfrentar los retos tecnológicos del presente y del futuro.
-                        </p>
-                        <p class="text-sm md:text-base leading-relaxed">
-                            Nuestra fortaleza no se limita al aula. La formación se desarrolla mediante proyectos integradores, laboratorios especializados, estadías profesionales, investigación aplicada, certificaciones tecnológicas y una estrecha vinculación con empresas e instituciones públicas y privadas, permitiendo que nuestros estudiantes adquieran experiencia práctica y desarrollen soluciones con impacto real.
-                        </p>
-                        <p class="text-sm md:text-base leading-relaxed">
-                            La Universidad Politécnica de Tlaxcala se encuentra estratégicamente ubicada en la región centro-sur del estado, una zona que concentra más del 80 % de la actividad comercial, industrial y de servicios de Tlaxcala, además de mantener una comunicación privilegiada con los principales corredores industriales del centro del país, incluyendo Puebla, Ciudad de México, Estado de México, Hidalgo y la región del Bajío. Esta ubicación favorece una estrecha colaboración con empresas nacionales e internacionales, ampliando las oportunidades de prácticas profesionales, estadías, proyectos tecnológicos, investigación aplicada y empleabilidad para nuestros estudiantes.
-                        </p>
-                        <p class="text-sm md:text-base leading-relaxed">
-                            Formar parte de nuestra comunidad significa estudiar en una institución reconocida por la calidad de su oferta educativa y por pertenecer al Subsistema de Universidades Tecnológicas y Politécnicas, referente nacional en educación superior tecnológica por su modelo basado en competencias profesionales, su estrecha vinculación con el sector productivo y su alta capacidad para incorporar exitosamente a sus egresados al mercado laboral.
-                        </p>
-                        <p class="text-sm md:text-base leading-relaxed">
-                            Nuestros estudiantes desarrollan competencias técnicas, científicas, digitales y humanas que les permiten participar en proyectos de innovación, emprendimiento tecnológico y transformación digital, con una sólida formación ética, responsabilidad social y compromiso con el desarrollo sostenible.
-                        </p>
-                        <p class="text-amber-300 font-display text-xl md:text-2xl mt-6">
-                            Bienvenido a la Universidad Politécnica de Tlaxcala. Bienvenido a la Ingeniería en Tecnologías de la Información e Innovación Digital. Aquí comienza tu futuro, donde la tecnología inspira, la innovación transforma y el talento construye el mañana.
-                        </p>
-                    </div>
-                </div>
+       <!-- ========================================== -->
+<!-- CONTENIDO: MENSAJE DE BIENVENIDA           -->
+<!-- ========================================== -->
+<div id="nosotros-bienvenida" class="nosotros-section active">
+    <div class="rounded-2xl overflow-hidden shadow-2xl relative min-h-[400px] bg-[#1c0a0d]">
+        <!-- Imagen del director ahora se muestra ENCIMA del texto, no detrás -->
+        <div class="relative z-10 p-8 md:p-10 text-white flex flex-col md:flex-row items-center gap-8">
+            <div class="flex-shrink-0">
+                <img src="files/director-img.jpeg" alt="Director de la UPTx" 
+                     class="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover border-4 border-amber-300/50 shadow-xl">
             </div>
+            <div class="flex-1">
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-amber-300 mb-6">Mensaje de Bienvenida</h2>
+                <p class="text-lg font-light text-amber-200/80 italic">Donde la innovación se convierte en conocimiento y el conocimiento transforma el futuro</p>
+            </div>
+        </div>
+        <div class="relative z-10 px-8 md:px-10 pb-8 text-white prose prose-invert max-w-none text-gray-200">
+            <p class="text-sm md:text-base leading-relaxed">
+                Hoy vivimos en una sociedad impulsada por la información, la innovación y la conectividad. Las Tecnologías de la Información son el motor que transforma industrias, gobiernos, instituciones educativas y empresas de todos los tamaños. La inteligencia artificial, la ciencia de datos, el desarrollo de software, la computación en la nube, la ciberseguridad, las redes digitales, el Internet de las Cosas y la automatización inteligente están redefiniendo la manera en que trabajamos, producimos, aprendemos y nos relacionamos.
+            </p>
+            <p class="text-sm md:text-base leading-relaxed">
+                En este escenario, la Universidad Politécnica de Tlaxcala forma ingenieras e ingenieros capaces de diseñar, desarrollar, integrar e implementar soluciones tecnológicas que respondan a los desafíos de la transformación digital, impulsando la innovación, la competitividad y el desarrollo sostenible de las organizaciones.
+            </p>
+            <p class="text-sm md:text-base leading-relaxed">
+                Como parte del Nuevo Modelo Educativo del Subsistema de Universidades Tecnológicas y Politécnicas, implementado por la Dirección General de Universidades Tecnológicas y Politécnicas en 2024, nuestro programa evolucionó hacia la Ingeniería en Tecnologías de la Información e Innovación Digital, integrando una formación moderna, flexible y orientada a las necesidades reales del entorno productivo. Este modelo incorpora áreas estratégicas como Desarrollo de Software Multiplataforma, Ciencia de Datos, Inteligencia Artificial, Entornos Virtuales y Negocios Digitales e Infraestructura de Redes Digitales, preparando profesionistas capaces de enfrentar los retos tecnológicos del presente y del futuro.
+            </p>
+            <p class="text-amber-300 font-display text-xl md:text-2xl mt-6">
+                Bienvenido a la Universidad Politécnica de Tlaxcala. Bienvenido a la Ingeniería en Tecnologías de la Información e Innovación Digital. Aquí comienza tu futuro, donde la tecnología inspira, la innovación transforma y el talento construye el mañana.
+            </p>
+        </div>
+    </div>
+</div>
 
-            <!-- Misión UPTx -->
-            <div id="nosotros-mision" data-aos="fade-up" data-aos-delay="100" class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm scroll-mt-8">
+        <!-- ========================================== -->
+        <!-- CONTENIDO: MISIÓN UPTX                     -->
+        <!-- ========================================== -->
+        <div id="nosotros-mision" class="nosotros-section">
+            <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
                 <div class="flex items-center gap-3 mb-4">
-                    <div class="w-10 h-10 bg-rose-50 rounded-xl flex items-center justify-center text-[#6a1b29] text-lg">
+                    <div class="w-12 h-12 bg-rose-50 rounded-xl flex items-center justify-center text-[#6a1b29] text-xl">
                         <i class="fa-solid fa-bullseye"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900">Misión UPTx</h3>
+                    <h3 class="text-2xl font-bold text-gray-900">Misión UPTx</h3>
                 </div>
-                <p class="text-sm text-gray-600 leading-relaxed">Formamos profesionistas y emprendedores competentes, innovadores y socialmente responsables, con una visión global, mediante un modelo educativo de excelencia centrado en la inclusión, la equidad, la interculturalidad, la investigación aplicada y la vinculación con los sectores social y productivo, para contribuir al desarrollo científico, tecnológico, económico, ambiental y humano sustentable de Tlaxcala, México y el mundo.</p>
+                <p class="text-base text-gray-600 leading-relaxed">Formamos profesionistas y emprendedores competentes, innovadores y socialmente responsables, con una visión global, mediante un modelo educativo de excelencia centrado en la inclusión, la equidad, la interculturalidad, la investigación aplicada y la vinculación con los sectores social y productivo, para contribuir al desarrollo científico, tecnológico, económico, ambiental y humano sustentable de Tlaxcala, México y el mundo.</p>
             </div>
+        </div>
 
-            <!-- Visión UPTx -->
-            <div id="nosotros-vision" data-aos="fade-up" data-aos-delay="150" class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm scroll-mt-8">
+        <!-- ========================================== -->
+        <!-- CONTENIDO: VISIÓN UPTX                     -->
+        <!-- ========================================== -->
+        <div id="nosotros-vision" class="nosotros-section">
+            <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
                 <div class="flex items-center gap-3 mb-4">
-                    <div class="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center text-amber-600 text-lg">
+                    <div class="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center text-amber-600 text-xl">
                         <i class="fa-solid fa-eye"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900">Visión UPTx 2035</h3>
+                    <h3 class="text-2xl font-bold text-gray-900">Visión UPTx 2035</h3>
                 </div>
-                <p class="text-sm text-gray-600 leading-relaxed">Ser una universidad politécnica reconocida nacional e internacionalmente por la excelencia y pertinencia de sus programas educativos, la calidad de su investigación aplicada, la innovación social y tecnológica, y su compromiso con la inclusión, la equidad de género, la interculturalidad y el desarrollo sustentable, generando soluciones de alto impacto para el bienestar de la sociedad y la transformación de su entorno.</p>
+                <p class="text-base text-gray-600 leading-relaxed">Ser una universidad politécnica reconocida nacional e internacionalmente por la excelencia y pertinencia de sus programas educativos, la calidad de su investigación aplicada, la innovación social y tecnológica, y su compromiso con la inclusión, la equidad de género, la interculturalidad y el desarrollo sustentable, generando soluciones de alto impacto para el bienestar de la sociedad y la transformación de su entorno.</p>
             </div>
+        </div>
 
-            <!-- Política de Calidad -->
-            <div id="nosotros-politica" data-aos="fade-up" data-aos-delay="200" class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm scroll-mt-8">
+        <!-- ========================================== -->
+        <!-- CONTENIDO: POLÍTICA DE CALIDAD             -->
+        <!-- ========================================== -->
+        <div id="nosotros-politica" class="nosotros-section">
+            <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
                 <div class="flex items-center gap-3 mb-4">
-                    <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 text-lg">
+                    <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 text-xl">
                         <i class="fa-solid fa-file-lines"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900">Política de Calidad</h3>
+                    <h3 class="text-2xl font-bold text-gray-900">Política de Calidad</h3>
                 </div>
-                <p class="text-sm text-gray-600 leading-relaxed">En la Universidad Politécnica de Tlaxcala formamos profesionales competentes, innovadores y socialmente responsables mediante un Sistema de Gestión de la Calidad orientado a la excelencia, la mejora continua, la innovación, la inclusión, la equidad, la interculturalidad y el desarrollo sustentable. Generamos valor para nuestros estudiantes, personal universitario, sectores social y productivo y demás partes interesadas, mediante procesos pertinentes, eficientes y transparentes que contribuyen al desarrollo científico, tecnológico, económico, ambiental y humano, en cumplimiento de los requisitos aplicables y del compromiso institucional con la calidad.</p>
+                <p class="text-base text-gray-600 leading-relaxed">En la Universidad Politécnica de Tlaxcala formamos profesionales competentes, innovadores y socialmente responsables mediante un Sistema de Gestión de la Calidad orientado a la excelencia, la mejora continua, la innovación, la inclusión, la equidad, la interculturalidad y el desarrollo sustentable. Generamos valor para nuestros estudiantes, personal universitario, sectores social y productivo y demás partes interesadas, mediante procesos pertinentes, eficientes y transparentes que contribuyen al desarrollo científico, tecnológico, económico, ambiental y humano, en cumplimiento de los requisitos aplicables y del compromiso institucional con la calidad.</p>
             </div>
+        </div>
 
-            <!-- Objetivos de Calidad -->
-            <div id="nosotros-objetivos" data-aos="fade-up" data-aos-delay="250" class="grid grid-cols-1 md:grid-cols-2 gap-6 scroll-mt-8">
-                <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
-                    <h4 class="font-bold text-gray-900 mb-2">Objetivo de Calidad 1</h4>
-                    <p class="text-sm text-gray-600 leading-relaxed">Fortalecer la formación integral de profesionales competentes mediante procesos educativos innovadores, inclusivos y centrados en el aprendizaje, promoviendo la excelencia académica, la investigación aplicada, la responsabilidad social, la equidad, la interculturalidad y el desarrollo sostenible.</p>
+        <!-- ========================================== -->
+        <!-- CONTENIDO: OBJETIVOS DE CALIDAD            -->
+        <!-- ========================================== -->
+        <div id="nosotros-objetivos" class="nosotros-section">
+            <div class="space-y-6">
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Objetivo de Calidad 1</h4>
+                    <p class="text-base text-gray-600 leading-relaxed">Fortalecer la formación integral de profesionales competentes mediante procesos educativos innovadores, inclusivos y centrados en el aprendizaje, promoviendo la excelencia académica, la investigación aplicada, la responsabilidad social, la equidad, la interculturalidad y el desarrollo sostenible.</p>
                 </div>
-                <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
-                    <h4 class="font-bold text-gray-900 mb-2">Objetivo de Calidad 2</h4>
-                    <p class="text-sm text-gray-600 leading-relaxed">Consolidar la vinculación con los sectores social, productivo, gubernamental e internacional para impulsar la innovación, la transferencia del conocimiento y el desarrollo tecnológico, atendiendo con pertinencia las necesidades del entorno y contribuyendo al bienestar social y al desarrollo sostenible.</p>
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Objetivo de Calidad 2</h4>
+                    <p class="text-base text-gray-600 leading-relaxed">Consolidar la vinculación con los sectores social, productivo, gubernamental e internacional para impulsar la innovación, la transferencia del conocimiento y el desarrollo tecnológico, atendiendo con pertinencia las necesidades del entorno y contribuyendo al bienestar social y al desarrollo sostenible.</p>
                 </div>
             </div>
+        </div>
 
-            <!-- Objetivo General del PE -->
-            <div id="nosotros-objetivo-pe" data-aos="fade-up" data-aos-delay="300" class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm scroll-mt-8">
+        <!-- ========================================== -->
+        <!-- CONTENIDO: OBJETIVO GENERAL DEL PE         -->
+        <!-- ========================================== -->
+        <div id="nosotros-objetivo-pe" class="nosotros-section">
+            <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
                 <div class="flex items-center gap-3 mb-4">
-                    <div class="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 text-lg">
+                    <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 text-xl">
                         <i class="fa-solid fa-graduation-cap"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900">Objetivo General del PE</h3>
+                    <h3 class="text-2xl font-bold text-gray-900">Objetivo General del PE</h3>
                 </div>
-                <p class="text-sm text-gray-600 leading-relaxed">Formar ingenieros competentes en Tecnologías de la Información e Innovación Digital, capaces de diseñar, desarrollar, implementar y gestionar soluciones tecnológicas innovadoras que respondan a las necesidades del entorno productivo y social, contribuyendo a la transformación digital y al desarrollo sostenible de la región y el país.</p>
+                <p class="text-base text-gray-600 leading-relaxed">Formar ingenieros competentes en Tecnologías de la Información e Innovación Digital, capaces de diseñar, desarrollar, implementar y gestionar soluciones tecnológicas innovadoras que respondan a las necesidades del entorno productivo y social, contribuyendo a la transformación digital y al desarrollo sostenible de la región y el país.</p>
             </div>
+        </div>
 
-            <!-- Plan de Desarrollo 2024-2028 -->
-            <div id="nosotros-plan-desarrollo" data-aos="fade-up" data-aos-delay="350" class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm scroll-mt-8">
+        <!-- ========================================== -->
+        <!-- CONTENIDO: PLAN DE DESARROLLO             -->
+        <!-- ========================================== -->
+        <div id="nosotros-plan-desarrollo" class="nosotros-section">
+            <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
                 <div class="flex items-center gap-3 mb-4">
-                    <div class="w-10 h-10 bg-purple-50 rounded-xl flex items-center justify-center text-purple-600 text-lg">
+                    <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center text-purple-600 text-xl">
                         <i class="fa-solid fa-chart-line"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900">Plan de Desarrollo 2024-2028</h3>
+                    <h3 class="text-2xl font-bold text-gray-900">Plan de Desarrollo 2024-2028</h3>
                 </div>
-                <ul class="space-y-2 text-sm text-gray-600">
-                    <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Eje 1:</strong> Fortalecimiento de la calidad educativa y pertinencia del PE.</span></li>
-                    <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Eje 2:</strong> Impulso a la investigación aplicada, innovación y desarrollo tecnológico.</span></li>
-                    <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Eje 3:</strong> Fortalecimiento de la vinculación con los sectores productivo y social.</span></li>
-                    <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Eje 4:</strong> Consolidación del cuerpo académico y desarrollo profesional docente.</span></li>
-                    <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Eje 5:</strong> Mejora continua de la infraestructura y equipamiento especializado.</span></li>
-                    <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Eje 6:</strong> Internacionalización y movilidad académica.</span></li>
-                </ul>
-            </div>
-
-            <!-- Planes de Trabajo 2024-2028 -->
-            <div id="nosotros-planes-trabajo" data-aos="fade-up" data-aos-delay="400" class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm scroll-mt-8">
-                <div class="flex items-center gap-3 mb-4">
-                    <div class="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 text-lg">
-                        <i class="fa-solid fa-calendar-check"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900">Planes de Trabajo 2024-2028</h3>
-                </div>
-                <ul class="space-y-2 text-sm text-gray-600">
-                    <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Plan Anual 2024:</strong> Arranque del nuevo plan de estudios y consolidación de especialidades.</span></li>
-                    <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Plan Anual 2025:</strong> Fortalecimiento de laboratorios y certificaciones tecnológicas.</span></li>
-                    <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Plan Anual 2026:</strong> Evaluación y actualización de contenidos curriculares.</span></li>
-                    <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Plan Anual 2027:</strong> Consolidación de la investigación aplicada y proyectos de innovación.</span></li>
-                    <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Plan Anual 2028:</strong> Evaluación integral del PE y preparación para la siguiente acreditación.</span></li>
+                <ul class="space-y-3 text-base text-gray-600">
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Eje 1:</strong> Fortalecimiento de la calidad educativa y pertinencia del PE.</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Eje 2:</strong> Impulso a la investigación aplicada, innovación y desarrollo tecnológico.</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Eje 3:</strong> Fortalecimiento de la vinculación con los sectores productivo y social.</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Eje 4:</strong> Consolidación del cuerpo académico y desarrollo profesional docente.</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Eje 5:</strong> Mejora continua de la infraestructura y equipamiento especializado.</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Eje 6:</strong> Internacionalización y movilidad académica.</span></li>
                 </ul>
             </div>
         </div>
+
+        <!-- ========================================== -->
+        <!-- CONTENIDO: PLANES DE TRABAJO               -->
+        <!-- ========================================== -->
+        <div id="nosotros-planes-trabajo" class="nosotros-section">
+            <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 text-xl">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900">Planes de Trabajo TIID 2024-2028</h3>
+                </div>
+                <ul class="space-y-3 text-base text-gray-600">
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Plan Anual 2024:</strong> Arranque del nuevo plan de estudios y consolidación de especialidades.</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Plan Anual 2025:</strong> Fortalecimiento de laboratorios y certificaciones tecnológicas.</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Plan Anual 2026:</strong> Evaluación y actualización de contenidos curriculares.</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Plan Anual 2027:</strong> Consolidación de la investigación aplicada y proyectos de innovación.</span></li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-[#6a1b29] mt-1"></i> <span><strong>Plan Anual 2028:</strong> Evaluación integral del PE y preparación para la siguiente acreditación.</span></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- MODAL DE UBICACIÓN                          -->
+<!-- ============================================ -->
+<div id="ubicacion-modal">
+    <div class="ubicacion-panel">
+        <button onclick="closeUbicacion()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 flex items-center justify-center transition-colors focus:outline-none">
+            <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4 pr-10">Ubicación UPTx</h3>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.472387236162!2d-98.2375984!3d19.1836512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfc0e8c9dbbcb1%3A0x2b0cb1eb9dee9e2f!2sUniversidad%20Pol%C3%A9cnica%20de%20Tlaxcala!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx" 
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <p class="mt-4 text-sm text-gray-600">Carretera Federal Tlaxcala - Cuernavaca Km. 9.5, Tepeyanco, Tlaxcala.</p>
     </div>
 </div>
 
@@ -1298,24 +1412,25 @@ class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blu
     });
 
     // ============================================
-    // FUNCIONALIDAD DEL MODAL DE NOSOTROS
+    // FUNCIONALIDAD DEL MODAL DE NOSOTROS (INDIVIDUAL)
     // ============================================
     function openNosotrosSection(sectionId) {
         const container = document.getElementById('nosotros-container');
-        // Abrir el contenedor
-        container.classList.add('open');
-        document.body.style.overflow = 'hidden'; // Bloquear scroll del fondo
+        const sections = document.querySelectorAll('.nosotros-section');
         
-        // Pequeño retraso para que el DOM renderice antes de hacer scroll
-        setTimeout(() => {
-            const target = document.getElementById(sectionId);
-            if (target) {
-                // Calcular posición restando el header del modal (aprox 100px)
-                const topPosition = target.getBoundingClientRect().top + container.scrollTop - 100;
-                container.scrollTo({ top: topPosition, behavior: 'smooth' });
-            }
-        }, 100);
-
+        // Ocultar todas las secciones
+        sections.forEach(sec => sec.classList.remove('active'));
+        
+        // Mostrar la sección seleccionada
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+            targetSection.classList.add('active');
+        }
+        
+        // Abrir el modal
+        container.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        
         // Cerrar el menú desplegable si está abierto
         closeNosotrosDropdown();
     }
@@ -1323,13 +1438,28 @@ class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blu
     function closeNosotrosContainer() {
         const container = document.getElementById('nosotros-container');
         container.classList.remove('open');
-        document.body.style.overflow = ''; // Restaurar scroll del fondo
+        document.body.style.overflow = '';
     }
 
-    // Cerrar modal al presionar ESC
+    // ============================================
+    // FUNCIONALIDAD DEL MODAL DE UBICACIÓN
+    // ============================================
+    function openUbicacion() {
+        document.getElementById('ubicacion-modal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+        closeNosotrosDropdown();
+    }
+
+    function closeUbicacion() {
+        document.getElementById('ubicacion-modal').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    // Cerrar modales al presionar ESC
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             closeNosotrosContainer();
+            closeUbicacion();
         }
     });
 
