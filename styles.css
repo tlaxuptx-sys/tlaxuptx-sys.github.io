@@ -116,6 +116,26 @@ body {
     max-height: 26rem;
 }
 
+
+.mobile-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .32s ease;
+}
+
+.mobile-menu.open {
+    max-height: calc(100vh - 5rem); /* se adapta a cualquier pantalla */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mobile-menu.open::-webkit-scrollbar {
+    width: 4px;
+}
+.mobile-menu.open::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, .25);
+    border-radius: 4px;
+}
 /* ============================================
    ANIMACIONES
    ============================================ */
